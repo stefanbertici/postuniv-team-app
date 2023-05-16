@@ -8,13 +8,13 @@ import ro.ubb.SaloonApp.dto.UserViewDto;
 import ro.ubb.SaloonApp.mapper.UserMapper;
 import ro.ubb.SaloonApp.model.Role;
 import ro.ubb.SaloonApp.model.User;
-import ro.ubb.SaloonApp.repository.RoleRepository;
 import ro.ubb.SaloonApp.repository.UserRepository;
+import ro.ubb.SaloonApp.utils.RepositoryChecker;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Optional;
+import java.util.List;
 
 import static ro.ubb.SaloonApp.constant.Role.CUSTOMER;
 
@@ -22,14 +22,12 @@ import static ro.ubb.SaloonApp.constant.Role.CUSTOMER;
 @AllArgsConstructor
 public class UserService {
 
+    private final RepositoryChecker repositoryChecker;
     private final UserRepository userRepository;
 
     @Transactional
     public UserViewDto registerUser(UserDto userDto) {
-        Optional<User> userByEmail = userRepository.findUserByEmail(userDto.getEmail());
-        if (userByEmail.isPresent()) {
-            throw new IllegalArgumentException("Email " + userDto.getEmail() + " is already registered");
-        }
+        repositoryChecker.checkIfRegisteredEmail(userDto.getEmail());
 
         User user = UserMapper.INSTANCE.toEntity(userDto);
         user = userRepository.save(user);
