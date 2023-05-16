@@ -23,7 +23,6 @@ import static ro.ubb.SaloonApp.constant.Role.CUSTOMER;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
 
     @Transactional
     public UserViewDto registerUser(UserDto userDto) {
@@ -32,16 +31,13 @@ public class UserService {
             throw new IllegalArgumentException("Email " + userDto.getEmail() + " is already registered");
         }
 
-        Optional<Role> roleByName = roleRepository.findRoleByName(CUSTOMER.value);
-        if (roleByName.isEmpty()) {
-            throw new IllegalArgumentException("Role " + CUSTOMER.value + " is not valid");
-        }
-
         User user = UserMapper.INSTANCE.toEntity(userDto);
         user = userRepository.save(user);
 
         String encryptedPassword = getEncryptedPassword(userDto.getPassword());
-        Role role = roleByName.get();
+        Role role = Role.builder()
+                .name(CUSTOMER.value)
+                .build();
 
         user.setEncryptedPassword(encryptedPassword);
         user.setRole(role);

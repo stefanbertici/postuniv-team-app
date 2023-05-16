@@ -3,11 +3,12 @@ package ro.ubb.SaloonApp.constant;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum Role {
+public enum Status {
 
-    CUSTOMER("customer"),
-    EMPLOYEE("employee"),
-    ADMIN("admin");
+    PENDING("pending"),
+    MODIFIED("modified"),
+    ACCEPTED("accepted"),
+    FINISHED("completed");
 
     public final String value;
 }
