@@ -29,8 +29,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/**/swagger-resources", "/**/swagger-resources/**", "/**/swagger-ui", "/**/swagger-ui/**",
                         "/**/swagger-ui.html", "/**/swagger-ui.html/**", "/**/v3/api-docs/**",
-                        "/**/register", "/**/login", "/**/user/403").permitAll() // TODO remove /** after testing phase
+                        "/**/auth/register", "/**/auth/login").permitAll() // TODO remove /** after testing phase
                 .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/auth/login")
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

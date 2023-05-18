@@ -21,14 +21,14 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/")
-    public ResponseEntity<List<UserViewDto>> readAllUsers() {
-        List<UserViewDto> users = userService.readAllUsers();
+    public ResponseEntity<List<UserViewDto>> readAll() {
+        List<UserViewDto> users = userService.readAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserViewDto> readUserById(@PathVariable Integer id) {
-        UserViewDto user = userService.readUserById(id);
+    public ResponseEntity<UserViewDto> readById(@PathVariable Integer id) {
+        UserViewDto user = userService.readById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

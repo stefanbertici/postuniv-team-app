@@ -19,14 +19,14 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public List<UserViewDto> readAllUsers() {
+    public List<UserViewDto> readAll() {
         List<User> users = userRepository.findAll();
 
         return UserMapper.INSTANCE.toUserViewDtos(users);
     }
 
     @Transactional
-    public UserViewDto readUserById(int id) {
+    public UserViewDto readById(int id) {
         User user = repositoryChecker.getUserIfExists(id);
 
         return UserMapper.INSTANCE.toUserViewDto(user);
