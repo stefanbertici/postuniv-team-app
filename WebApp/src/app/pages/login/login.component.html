@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="login-box">
+    <div class="login-card">
+    <mat-card>
+      <mat-toolbar style="height:45px;" color="customGreen">
+        <span>Login</span>
+      </mat-toolbar>
+      <br>
+    <form class="LOGIN" [formGroup]="formGroup" (ngSubmit)="login()">
+        <mat-form-field class="USERNAME">
+          <mat-label>Username: </mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+    <br>
+        <mat-form-field class="password">
+          <mat-label>Password: </mat-label>
+          <input matInput type="password" formControlName="password">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="customGreen" type="submit"><i class="material-icons">login</i></button>
+      </form>
+      <br>
+      <a routerLink="/register">r e g i s t e r</a>
+      <mat-toolbar style="height:30px;" color="customGreen">
+        <span class="drive-safe"><p>d r i v e | safe</p></span>
+      </mat-toolbar>
+      </mat-card>
+    </div>
+    </div>
+    
+    
