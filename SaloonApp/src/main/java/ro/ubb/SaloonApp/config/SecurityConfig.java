@@ -22,23 +22,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .csrf()
-                .disable()
+                .csrf().disable()
                 .cors()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/**/swagger-resources", "/**/swagger-resources/**", "/**/swagger-ui", "/**/swagger-ui/**",
-                        "/**/swagger-ui.html", "/**/swagger-ui.html/**", "/**/v3/api-docs/**",
+                .requestMatchers("/**/swagger-resources", "/**/swagger-resources/**", "/**/swagger-ui",
+                        "/**/swagger-ui/**", "/**/swagger-ui.html", "/**/swagger-ui.html/**", "/**/v3/api-docs/**",
                         "/**/auth/register", "/**/auth/login").permitAll() // TODO remove /** after testing phase
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/auth/login")
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authenticationProvider(authenticationProvider)
-                .addFilterAfter(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .authenticationProvider(authenticationProvider).addFilterAfter(
+                        jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }

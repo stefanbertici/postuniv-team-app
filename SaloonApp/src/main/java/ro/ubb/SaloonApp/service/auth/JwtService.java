@@ -12,7 +12,6 @@ import ro.ubb.SaloonApp.constant.Role;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -20,10 +19,6 @@ import java.util.function.Function;
 public class JwtService {
 
     private static final String secretKey = "2D4A614E645267556B58703273357538782F413F4428472B4B6250655368566D";
-
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
-    }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return Jwts.builder()

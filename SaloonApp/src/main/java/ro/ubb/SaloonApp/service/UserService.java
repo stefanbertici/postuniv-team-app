@@ -3,7 +3,7 @@ package ro.ubb.SaloonApp.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ro.ubb.SaloonApp.dto.UserViewDto;
+import ro.ubb.SaloonApp.dto.EmployeeViewDto;
 import ro.ubb.SaloonApp.mapper.UserMapper;
 import ro.ubb.SaloonApp.model.User;
 import ro.ubb.SaloonApp.repository.UserRepository;
@@ -19,16 +19,16 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public List<UserViewDto> readAll() {
+    public List<EmployeeViewDto> readAll() {
         List<User> users = userRepository.findAll();
 
-        return UserMapper.INSTANCE.toUserViewDtos(users);
+        return UserMapper.INSTANCE.toEmployeeViewDtos(users);
     }
 
     @Transactional
-    public UserViewDto readById(int id) {
+    public EmployeeViewDto readById(int id) {
         User user = repositoryChecker.getUserIfExists(id);
 
-        return UserMapper.INSTANCE.toUserViewDto(user);
+        return UserMapper.INSTANCE.toEmployeeViewDto(user);
     }
 }

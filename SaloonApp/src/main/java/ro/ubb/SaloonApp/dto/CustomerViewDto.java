@@ -1,11 +1,9 @@
 package ro.ubb.SaloonApp.dto;
 
-import lombok.Data;
+public record CustomerViewDto(
 
-@Data
-public final class CustomerViewDto {
-    private Integer id;
-    private String name;
-    private String email;
-    private String role;
+        Integer id,
+        String name,
+        String email,
+        String role) {
 }

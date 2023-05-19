@@ -35,12 +35,12 @@ public class AuthenticationService {
 
     @Transactional
     public CustomerViewDto register(UserDto userDto) {
-        repositoryChecker.checkIfAlreadyRegistered(userDto.getEmail());
+        repositoryChecker.checkIfAlreadyRegistered(userDto.email());
 
         User user = UserMapper.INSTANCE.toEntity(userDto);
         user = userRepository.save(user);
 
-        String encryptedPassword = passwordEncoder.encode(userDto.getPassword());
+        String encryptedPassword = passwordEncoder.encode(userDto.password());
 
         user.setEncryptedPassword(encryptedPassword);
         user.setRole(CUSTOMER);
@@ -52,19 +52,17 @@ public class AuthenticationService {
     public LoginViewDto login(UserLoginDto userLoginDto) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        userLoginDto.getEmail(), userLoginDto.getPassword()
+                        userLoginDto.email(), userLoginDto.password()
                 )
         );
 
-        Optional<User> optional = userRepository.findUserByEmail(userLoginDto.getEmail());
+        Optional<User> optional = userRepository.findUserByEmail(userLoginDto.email());
         if (optional.isEmpty()) {
             throw new UnauthorizedException("Incorrect email or password");
         }
 
         User user = optional.get();
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("id", user.getId());
-        claims.put("role", user.getRole());
+        Map<String, Object> claims = getClaims(user);
         String accessToken = jwtService.generateToken(claims, user);
 
         return UserMapper.INSTANCE.toLoginViewDto(user, accessToken);
@@ -75,5 +73,13 @@ public class AuthenticationService {
         inMemoryTokenBlacklistService.blacklist(accessToken);
 
         return "Logout successful";
+    }
+
+    private static Map<String, Object> getClaims(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("id", user.getId());
+        claims.put("role", user.getRole());
+
+        return claims;
     }
 }
