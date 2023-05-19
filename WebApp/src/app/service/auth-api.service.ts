@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthApiService {
-  private authApiLink: String = "/";
+  private authApiLink: string = "http://localhost:8080/api/auth/login";
 
   constructor(private httpClient: HttpClient) { }
 
   getAuthorized(loginInfo: any): Observable<any> {
-    return this.httpClient.post('this.authApiLink', loginInfo);
+    return this.httpClient.post(this.authApiLink, loginInfo);
   }
 }
