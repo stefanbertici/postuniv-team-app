@@ -1,9 +1,10 @@
 package ro.ubb.SaloonApp.dto;
 
-public record CustomerViewDto(
+public record LoginViewDto(
 
         Integer id,
         String name,
         String email,
-        String role) {
+        String role,
+        String token) {
 }

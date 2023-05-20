@@ -1,13 +1,13 @@
 package ro.ubb.SaloonApp.utils;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ro.ubb.SaloonApp.exception.ResourceNotFoundException;
 import ro.ubb.SaloonApp.model.User;
 import ro.ubb.SaloonApp.repository.UserRepository;
 
-@AllArgsConstructor
 @Component
+@RequiredArgsConstructor
 public class RepositoryChecker {
 
     private final UserRepository userRepository;
@@ -22,7 +22,7 @@ public class RepositoryChecker {
                 .orElseThrow(() -> new ResourceNotFoundException("There is no user with email = " + email));
     }
 
-    public void checkIfRegisteredEmail(String email) {
+    public void checkIfAlreadyRegistered(String email) {
         if (userRepository.findUserByEmail(email).isPresent()) {
             throw new IllegalArgumentException("Email " + email + " is already registered");
         }
