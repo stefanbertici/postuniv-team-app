@@ -29,6 +29,8 @@ export class IdentityService {
   register(formGroup: FormGroup) {
     this.authApiService.getRegistered(formGroup.value)
       .subscribe(_ => console.log("ok!"));
+      location.reload();
+      //Todo: Mesaj confirmare user inregistrat/sau eroare!
   }
 
 
