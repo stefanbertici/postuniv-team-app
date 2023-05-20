@@ -1,2 +1,2 @@
-<app-login></app-login>>
+<app-login *ngIf="!(identityService.isLoggedIn$ | async)"></app-login>
 <router-outlet></router-outlet>

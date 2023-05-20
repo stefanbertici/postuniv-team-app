@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthApiService {
-  private authApiLink: string = "http://localhost:8080/api/auth/login";
+  private authApiLink: string = "http://localhost:8080/auth/login";
   private authApiLinkRegister: string = "http://localhost:8080/auth/register";
 
   constructor(private httpClient: HttpClient) { }

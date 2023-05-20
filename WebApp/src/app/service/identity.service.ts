@@ -19,9 +19,16 @@ export class IdentityService {
   }
 
   login(formGroup: FormGroup) {
-    this.authApiService.getAuthorized(formGroup.value)
+
+    let userForLogin: { email: string, password: string } = {
+      email: formGroup.get('username')?.value,
+      password: formGroup.get('password')?.value
+    }
+
+    this.authApiService.getAuthorized(userForLogin)
       .subscribe(result => {
         localStorage.setItem('saloon auth', result.token);
+        console.log(result.token);
         this._isLoggedIn$.next(true);
       })
   }
@@ -29,8 +36,8 @@ export class IdentityService {
   register(formGroup: FormGroup) {
     this.authApiService.getRegistered(formGroup.value)
       .subscribe(_ => console.log("ok!"));
-      location.reload();
-      //Todo: Mesaj confirmare user inregistrat/sau eroare!
+    location.reload();
+    //Todo: Mesaj confirmare user inregistrat/sau eroare!
   }
 
 
