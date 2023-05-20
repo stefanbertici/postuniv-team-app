@@ -25,4 +25,11 @@ export class IdentityService {
         this._isLoggedIn$.next(true);
       })
   }
+
+  register(formGroup: FormGroup) {
+    this.authApiService.getRegistered(formGroup.value)
+      .subscribe(_ => console.log("ok!"));
+  }
+
+
 }

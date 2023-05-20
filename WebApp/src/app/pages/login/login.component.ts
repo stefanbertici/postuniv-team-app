@@ -8,7 +8,7 @@ import { IdentityService } from 'src/app/service/identity.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  formGroup : FormGroup | undefined;
+  formGroup!: FormGroup;
 
   constructor(private identityService: IdentityService){}
   
@@ -26,7 +26,7 @@ export class LoginComponent {
 
   login() {
     if (this.formGroup.valid) {
-      this.authService.login(this.formGroup);
+      this.identityService.login(this.formGroup);
     }
   }
 
