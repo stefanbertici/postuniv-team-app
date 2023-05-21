@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { guardianGuard } from './guardian.guard';
 
 const routes: Routes = [
-  {path: 'register', component: RegisterComponent, canActivate:[guardianGuard]},
+  {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent}
 ];
 
