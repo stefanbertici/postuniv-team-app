@@ -5,13 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.ubb.SaloonApp.dto.BeautyServiceDto;
-import ro.ubb.SaloonApp.dto.BeautyServiceResponse;
 import ro.ubb.SaloonApp.dto.BeautyServiceViewDto;
-import ro.ubb.SaloonApp.exception.ServiceException;
 import ro.ubb.SaloonApp.service.BeautyServiceService;
 
 import java.util.List;
-import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -34,20 +31,10 @@ public class BeautyServiceController {
     }
 
     @PostMapping("/save")
-    ResponseEntity<BeautyServiceResponse> saveBeautyService(@RequestBody BeautyServiceDto beautyServiceDto) {
-        try {
-            BeautyServiceDto beautyServiceSaved = beautyService.saveBeautyService(beautyServiceDto);
+    ResponseEntity<BeautyServiceViewDto> saveBeautyService(@RequestBody BeautyServiceDto beautyServiceDto) {
+        BeautyServiceViewDto beautyServiceSaved = beautyService.saveBeautyService(beautyServiceDto);
 
-            BeautyServiceResponse beautyServiceResponse = new BeautyServiceResponse();
-            beautyServiceResponse.setBeautyServices(Set.of(beautyServiceSaved));
-
-            return new ResponseEntity<>(beautyServiceResponse, HttpStatus.OK);
-        } catch (ServiceException e) {
-            BeautyServiceResponse beautyServiceResponse = new BeautyServiceResponse();
-            beautyServiceResponse.setErrorMessage(e.getMessage());
-
-            return new ResponseEntity<>(beautyServiceResponse, HttpStatus.OK);
-        }
+        return new ResponseEntity<>(beautyServiceSaved, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

@@ -1,6 +1,7 @@
 package ro.ubb.SaloonApp.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import ro.ubb.SaloonApp.dto.BeautyServiceDto;
 import ro.ubb.SaloonApp.dto.BeautyServiceViewDto;
@@ -12,10 +13,8 @@ import java.util.List;
 public interface BeautyServiceMapper {
     BeautyServiceMapper INSTANCE = Mappers.getMapper(BeautyServiceMapper.class);
 
-    BeautyServiceDto toBeautyServiceDto(BeautyService beautyService);
-
     BeautyService toEntity(BeautyServiceDto beautyServiceDto);
     List<BeautyServiceViewDto> toBeautyServiceDtos(List<BeautyService> beautyServices);
-
-    BeautyServiceViewDto toBeautyServiceViewDto(BeautyService beautyServiceToBeUpdated);
+     @Mapping(target = "categoryName", expression = "java(beautyService.getCategory().getName())")
+    BeautyServiceViewDto toBeautyServiceViewDto(BeautyService beautyService);
 }

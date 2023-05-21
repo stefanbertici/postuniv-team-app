@@ -26,10 +26,6 @@ public class Category {
     @Schema(hidden = true)
     @ManyToMany(mappedBy = "categories")
     private Set<User> users = new HashSet<>();
-    @JsonIgnore
-    @Schema(hidden = true)
-    @ManyToMany(mappedBy = "categories")
-    private Set<BeautyService> beautyServices = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
