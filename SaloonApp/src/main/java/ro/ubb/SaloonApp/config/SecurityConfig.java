@@ -3,6 +3,7 @@ package ro.ubb.SaloonApp.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,12 +26,18 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors()
                 .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/**/swagger-resources", "/**/swagger-resources/**", "/**/swagger-ui",
-                        "/**/swagger-ui/**", "/**/swagger-ui.html", "/**/swagger-ui.html/**", "/**/v3/api-docs/**",
-                        "/**/auth/register", "/**/auth/login", "/**").permitAll() // TODO remove /** after testing phase
-                .anyRequest().authenticated()
-                .and()
+                .authorizeHttpRequests(requests -> requests
+                        .requestMatchers(HttpMethod.POST, "/category/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/category/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/category/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/beauty-service/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/beauty-service/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/beauty-service/**").hasAuthority("ADMIN")
+                        .requestMatchers("/**/swagger-resources", "/**/swagger-resources/**", "/**/swagger-ui",
+                            "/**/swagger-ui/**", "/**/swagger-ui.html", "/**/swagger-ui.html/**", "/**/v3/api-docs/**",
+                            "/**/auth/register", "/**/auth/login").permitAll() // TODO remove /** after testing phase
+                        .anyRequest().authenticated()
+                )
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider).addFilterAfter(

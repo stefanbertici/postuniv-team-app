@@ -1,7 +1,7 @@
 package ro.ubb.SaloonApp.controller;
 
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import ro.ubb.SaloonApp.dto.UserLoginDto;
 import ro.ubb.SaloonApp.service.auth.AuthenticationService;
 
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {

@@ -1,6 +1,6 @@
 package ro.ubb.SaloonApp.controller;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,10 +8,10 @@ import ro.ubb.SaloonApp.dto.ReservationDto;
 import ro.ubb.SaloonApp.dto.ReservationUpdateDto;
 import ro.ubb.SaloonApp.dto.ReservationViewDto;
 import ro.ubb.SaloonApp.service.ReservationService;
-import java.util.List;
-import org.springframework.web.bind.annotation.RequestBody;
 
-@AllArgsConstructor
+import java.util.List;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/reservation")
 public class ReservationController {
@@ -24,7 +24,6 @@ public class ReservationController {
 
         return new ResponseEntity<>(reservationViewDtos, HttpStatus.OK);
     }
-
 
     @GetMapping("/{id}")
     ResponseEntity<ReservationViewDto> getReservationById(@PathVariable Integer id) {
@@ -40,8 +39,6 @@ public class ReservationController {
         return new ResponseEntity<>(reservationViewDto, HttpStatus.OK);
     }
 
-
-
     @PostMapping("/save")
     ResponseEntity<ReservationViewDto> saveReservation(@RequestBody ReservationDto reservationDto) {
         ReservationViewDto reservationViewDto = reservationService.create(reservationDto);
@@ -49,15 +46,10 @@ public class ReservationController {
         return new ResponseEntity<>(reservationViewDto, HttpStatus.OK);
     }
 
-
     @PutMapping(value = "/{id}")
     ResponseEntity<ReservationViewDto> updateReservation(@PathVariable Integer id, @RequestBody ReservationUpdateDto reservationUpdateDto) {
         ReservationViewDto reservationViewDto = reservationService.update(id, reservationUpdateDto);
 
         return new ResponseEntity<>(reservationViewDto, HttpStatus.OK);
     }
-
-
 }
-
-

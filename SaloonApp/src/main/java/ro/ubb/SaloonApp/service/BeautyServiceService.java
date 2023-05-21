@@ -37,7 +37,7 @@ public class BeautyServiceService {
         BeautyService beautyServiceToBeSaved = BeautyServiceMapper.INSTANCE.toEntity(beautyServiceDto);
 
         String categoryName = beautyServiceDto.categoryName();
-        Category categoryOfSavedBeautyService = repositoryChecker.getCategoryByName(categoryName);
+        Category categoryOfSavedBeautyService = repositoryChecker.getCategoryIfExists(categoryName);
 
         beautyServiceToBeSaved.setCategory(categoryOfSavedBeautyService);
 
@@ -49,7 +49,7 @@ public class BeautyServiceService {
     @Transactional
     public BeautyServiceViewDto updateBeautyService(Integer id, BeautyServiceDto beautyServiceDto) {
         String categoryName = beautyServiceDto.categoryName();
-        Category categoryOfUpdatedBeautyService = repositoryChecker.getCategoryByName(categoryName);
+        Category categoryOfUpdatedBeautyService = repositoryChecker.getCategoryIfExists(categoryName);
 
         BeautyService beautyServiceToBeUpdated = repositoryChecker.getBeautyServiceIfExists(id);
 

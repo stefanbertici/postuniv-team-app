@@ -11,10 +11,13 @@ import java.util.List;
 
 @Mapper
 public interface BeautyServiceMapper {
+
     BeautyServiceMapper INSTANCE = Mappers.getMapper(BeautyServiceMapper.class);
 
     BeautyService toEntity(BeautyServiceDto beautyServiceDto);
+
     List<BeautyServiceViewDto> toBeautyServiceDtos(List<BeautyService> beautyServices);
+
      @Mapping(target = "categoryName", expression = "java(beautyService.getCategory().getName())")
     BeautyServiceViewDto toBeautyServiceViewDto(BeautyService beautyService);
 }

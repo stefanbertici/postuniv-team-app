@@ -21,12 +21,6 @@ public class RepositoryChecker {
     private final BeautyServiceRepository beautyServiceRepository;
     private final ReservationRepository reservationRepository;
 
-    public Category getCategoryByName(String categoryName) {
-        return categoryRepository.findCategoryByName(categoryName)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("There is no category with the given name: " + categoryName));
-    }
-
     public BeautyService getBeautyServiceIfExists(Integer id) {
         return beautyServiceRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("There is no service with id =" + id));
@@ -34,22 +28,38 @@ public class RepositoryChecker {
 
     public User getUserIfExists(Integer id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("There is no user with id = " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("There is no user with id = '" + id + "'"));
     }
 
     public User getUserIfExists(String email) {
         return userRepository.findUserByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("There is no user with email = " + email));
+                .orElseThrow(() -> new ResourceNotFoundException("There is no user with email = '" + email + "'"));
     }
 
-    public void checkIfAlreadyRegistered(String email) {
+    public void checkIfEmailAlreadyRegistered(String email) {
         if (userRepository.findUserByEmail(email).isPresent()) {
-            throw new IllegalArgumentException("Email " + email + " is already registered");
+            throw new IllegalArgumentException("Email '" + email + "' is already registered");
+        }
+    }
+
+    public Category getCategoryIfExists(int id) {
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("There is no category with id = '" + id + "'"));
+    }
+
+    public Category getCategoryIfExists(String name) {
+        return categoryRepository.findCategoryByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException("There is no category with name '" + name + "'"));
+    }
+
+    public void checkIfCategoryAlreadyExists(String name) {
+        if (categoryRepository.findCategoryByName(name).isPresent()) {
+            throw new IllegalArgumentException("Category '" + name + "' already exists");
         }
     }
 
     public Reservation getReservationIfExists(Integer id) {
         return reservationRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("There is no reservation with id =" + id));
+                .orElseThrow(() -> new ResourceNotFoundException("There is no reservation with id '" + id + "'"));
     }
 }

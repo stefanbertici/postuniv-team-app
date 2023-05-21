@@ -35,7 +35,7 @@ public class AuthenticationService {
 
     @Transactional
     public CustomerViewDto register(UserDto userDto) {
-        repositoryChecker.checkIfAlreadyRegistered(userDto.email());
+        repositoryChecker.checkIfEmailAlreadyRegistered(userDto.email());
 
         User user = UserMapper.INSTANCE.toEntity(userDto);
         user = userRepository.save(user);

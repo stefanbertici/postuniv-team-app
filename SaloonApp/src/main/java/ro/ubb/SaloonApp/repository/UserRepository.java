@@ -1,6 +1,5 @@
 package ro.ubb.SaloonApp.repository;
 
-
 import org.springframework.data.repository.CrudRepository;
 import ro.ubb.SaloonApp.model.User;
 

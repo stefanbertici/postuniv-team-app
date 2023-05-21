@@ -8,7 +8,6 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import ro.ubb.SaloonApp.constant.Role;
 
 import java.security.Key;
 import java.util.Date;
@@ -32,14 +31,6 @@ public class JwtService {
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
-    }
-
-    public Role extractRole(String token) {
-        return Role.valueOf((String) extractAllClaims(token).get("role"));
-    }
-
-    public int extractId(String token) {
-        return Integer.parseInt((String) extractAllClaims(token).get("id"));
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {

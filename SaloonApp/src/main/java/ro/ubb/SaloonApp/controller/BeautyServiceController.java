@@ -1,6 +1,6 @@
 package ro.ubb.SaloonApp.controller;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +10,11 @@ import ro.ubb.SaloonApp.service.BeautyServiceService;
 
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/beautyServices")
+@RequestMapping("/beauty-service")
 public class BeautyServiceController {
+
     private final BeautyServiceService beautyService;
 
     @GetMapping("/readAllBeautyServices")
