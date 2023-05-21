@@ -6,8 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import ro.ubb.SaloonApp.dto.BeautyServiceDto;
 import ro.ubb.SaloonApp.dto.BeautyServiceViewDto;
-import ro.ubb.SaloonApp.exception.ResourceNotFoundException;
-import ro.ubb.SaloonApp.exception.ServiceException;
 import ro.ubb.SaloonApp.mapper.BeautyServiceMapper;
 import ro.ubb.SaloonApp.model.BeautyService;
 import ro.ubb.SaloonApp.model.Category;
@@ -15,7 +13,6 @@ import ro.ubb.SaloonApp.repository.BeautyServiceRepository;
 import ro.ubb.SaloonApp.utils.RepositoryChecker;
 
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -30,10 +27,9 @@ public class BeautyServiceService {
     }
 
     public BeautyServiceViewDto readById(Integer id) {
-        Optional<BeautyService> beautyServiceOptional = beautyServiceRepository.findById(id);
-        BeautyService beautyService = beautyServiceOptional.orElseThrow(() -> new ServiceException("Entity does not exist"));
+        BeautyService foundBeautyService = repositoryChecker.getBeautyServiceIfExists(id);
 
-        return BeautyServiceMapper.INSTANCE.toBeautyServiceViewDto(beautyService);
+        return BeautyServiceMapper.INSTANCE.toBeautyServiceViewDto(foundBeautyService);
     }
 
     public BeautyServiceViewDto saveBeautyService(@RequestBody BeautyServiceDto beautyServiceDto
@@ -41,9 +37,9 @@ public class BeautyServiceService {
         BeautyService beautyServiceToBeSaved = BeautyServiceMapper.INSTANCE.toEntity(beautyServiceDto);
 
         String categoryName = beautyServiceDto.categoryName();
-        Category categoryOfSavedBeautySerivce = repositoryChecker.getCategoryByName(categoryName);
+        Category categoryOfSavedBeautyService = repositoryChecker.getCategoryByName(categoryName);
 
-        beautyServiceToBeSaved.setCategory(categoryOfSavedBeautySerivce);
+        beautyServiceToBeSaved.setCategory(categoryOfSavedBeautyService);
 
         BeautyService beautyServiceSaved = beautyServiceRepository.save(beautyServiceToBeSaved);
 
@@ -52,15 +48,10 @@ public class BeautyServiceService {
 
     @Transactional
     public BeautyServiceViewDto updateBeautyService(Integer id, BeautyServiceDto beautyServiceDto) {
-        Optional<BeautyService> optionalBeautyService = beautyServiceRepository.findById(id);
-        if (optionalBeautyService.isEmpty()) {
-            throw new ResourceNotFoundException("The entity with id = " + id + " does not exist");
-        }
-
         String categoryName = beautyServiceDto.categoryName();
         Category categoryOfUpdatedBeautyService = repositoryChecker.getCategoryByName(categoryName);
 
-        BeautyService beautyServiceToBeUpdated = optionalBeautyService.get();
+        BeautyService beautyServiceToBeUpdated = repositoryChecker.getBeautyServiceIfExists(id);
 
         beautyServiceToBeUpdated.setCategory(categoryOfUpdatedBeautyService);
         beautyServiceToBeUpdated.setName(beautyServiceDto.name());
@@ -71,13 +62,10 @@ public class BeautyServiceService {
     }
 
     public BeautyServiceViewDto deleteBeautyService(Integer id) {
-        Optional<BeautyService> optionalBeautyService = beautyServiceRepository.findById(id);
-        if (optionalBeautyService.isEmpty()) {
-            throw new ResourceNotFoundException("The entity with id = " + id + " does not exist");
-        }
+        BeautyService deletedBeautyService = repositoryChecker.getBeautyServiceIfExists(id);
 
         beautyServiceRepository.deleteById(id);
 
-        return BeautyServiceMapper.INSTANCE.toBeautyServiceViewDto(optionalBeautyService.get());
+        return BeautyServiceMapper.INSTANCE.toBeautyServiceViewDto(deletedBeautyService);
     }
 }
