@@ -2,10 +2,10 @@ import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
-import { IdentityService } from './service/identity.service';
+import { guardianGuard } from './guardian.guard';
 
 const routes: Routes = [
-  {path: 'register', component: RegisterComponent, canActivate:[()=>inject(IdentityService).isLoggedIn$]},
+  {path: 'register', component: RegisterComponent, canActivate:[guardianGuard]},
   {path: 'login', component: LoginComponent}
 ];
 
