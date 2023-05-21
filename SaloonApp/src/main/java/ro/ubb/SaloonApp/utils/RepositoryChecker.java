@@ -5,9 +5,11 @@ import org.springframework.stereotype.Component;
 import ro.ubb.SaloonApp.exception.ResourceNotFoundException;
 import ro.ubb.SaloonApp.model.BeautyService;
 import ro.ubb.SaloonApp.model.Category;
+import ro.ubb.SaloonApp.model.Reservation;
 import ro.ubb.SaloonApp.model.User;
 import ro.ubb.SaloonApp.repository.BeautyServiceRepository;
 import ro.ubb.SaloonApp.repository.CategoryRepository;
+import ro.ubb.SaloonApp.repository.ReservationRepository;
 import ro.ubb.SaloonApp.repository.UserRepository;
 
 @Component
@@ -17,6 +19,7 @@ public class RepositoryChecker {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
     private final BeautyServiceRepository beautyServiceRepository;
+    private final ReservationRepository reservationRepository;
 
     public Category getCategoryByName(String categoryName) {
         return categoryRepository.findCategoryByName(categoryName)
@@ -43,5 +46,10 @@ public class RepositoryChecker {
         if (userRepository.findUserByEmail(email).isPresent()) {
             throw new IllegalArgumentException("Email " + email + " is already registered");
         }
+    }
+
+    public Reservation getReservationIfExists(Integer id) {
+        return reservationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("There is no reservation with id =" + id));
     }
 }
