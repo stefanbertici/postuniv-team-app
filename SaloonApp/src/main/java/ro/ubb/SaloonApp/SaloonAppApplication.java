@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SaloonAppApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SaloonAppApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SaloonAppApplication.class, args);
+    }
 }
