@@ -16,6 +16,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { UserDetailsComponent } from './pages/user/user-details/user-details.component';
 import { AuthInterceptorProvider } from './auth.interceptor';
+import {MatTableModule} from '@angular/material/table';
+
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { AuthInterceptorProvider } from './auth.interceptor';
     ReactiveFormsModule,
     MatToolbarModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

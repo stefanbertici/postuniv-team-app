@@ -9,21 +9,22 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
+  displayedColumns: string[] = ['id', 'name', 'email', 'role'];
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.readAll();
-    this.print();
   }
 
   readAll() {
     this.userService.getAll()
       .subscribe(x => this.users = x);
-      console.log(this.users);
   }
-  print(){
-    console.log(this.users.length);
+
+  logout(){
+    localStorage.removeItem('saloon auth');
+    location.reload();
   }
 
 }

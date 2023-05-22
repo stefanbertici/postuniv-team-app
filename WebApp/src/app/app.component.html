@@ -1,2 +1,3 @@
 <app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list>
+<app-login *ngIf="!(identityService.isLoggedIn$ | async)"></app-login>
 <router-outlet></router-outlet>

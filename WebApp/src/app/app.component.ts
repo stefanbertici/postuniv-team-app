@@ -7,7 +7,7 @@ import { IdentityService } from './service/identity.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'WebApp';
+  title = 'Saloon';
 
   constructor(public identityService: IdentityService){}
 }

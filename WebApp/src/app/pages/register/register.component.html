@@ -2,7 +2,7 @@
     <div class="register-card">
         <mat-card>
             <mat-toolbar style="height:45px;" color="customToolbarColor">
-                <span>Register</span>
+                <span>New account</span>
             </mat-toolbar>
             <br>
             <form class="register_form" [formGroup]="formGroup" (ngSubmit)="register()">
@@ -23,6 +23,8 @@
                 <br>
                 <button mat-raised-button color="primary" type="submit"><i class="material-icons">save_alt</i>Register</button>
             </form>
+            <br>
+            <a routerLink="/login"><i class="material-icons">arrow_back</i></a>
             <br>
         </mat-card>
     </div>
