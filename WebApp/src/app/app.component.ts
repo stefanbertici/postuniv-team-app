@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IdentityService } from './service/identity.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,5 @@ import { IdentityService } from './service/identity.service';
 export class AppComponent {
   title = 'Saloon';
 
-  constructor(public identityService: IdentityService){}
+  constructor(public identityService: IdentityService, public router: Router){}
 }

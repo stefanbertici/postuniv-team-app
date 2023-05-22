@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { IdentityService } from 'src/app/service/identity.service';
 
 @Component({
@@ -10,8 +11,8 @@ import { IdentityService } from 'src/app/service/identity.service';
 export class LoginComponent {
   formGroup!: FormGroup;
 
-  constructor(private identityService: IdentityService){}
-  
+  constructor(private identityService: IdentityService, private router: Router) { }
+
   ngOnInit(): void {
     this.initForm();
   }
@@ -21,7 +22,7 @@ export class LoginComponent {
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     })
-    
+
   }
 
   login() {
