@@ -20,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ReservationListComponent } from './pages/reservation/reservation-list/reservation-list.component';
 import { ReservationDetailsComponent } from './pages/reservation/reservation-details/reservation-details.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReservationAddComponent } from './pages/reservation/reservation-add/reservation-add.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     UserListComponent,
     UserDetailsComponent,
     ReservationListComponent,
-    ReservationDetailsComponent
+    ReservationDetailsComponent,
+    ReservationAddComponent
   ],
   imports: [
     BrowserModule,

@@ -47,5 +47,4 @@ export class ReservationListComponent implements OnInit {
     location.reload();
   }
 
-
 }

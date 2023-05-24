@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IdentityService } from './service/identity.service';
-import { Router } from '@angular/router';
+import { Router, withDebugTracing } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ReservationAddComponent } from './pages/reservation/reservation-add/reservation-add.component';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +12,12 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Saloon';
 
-  constructor(public identityService: IdentityService, public router: Router){}
+  constructor(public identityService: IdentityService, public router: Router, private matDialog: MatDialog) { }
+  
+  openSaveComponent() {
+    this.matDialog.open(ReservationAddComponent, {
+      height: '400px',
+      width: '300px'
+    });
+  }
 }
