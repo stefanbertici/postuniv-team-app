@@ -28,7 +28,6 @@ export class IdentityService {
     this.authApiService.getAuthorized(userForLogin)
       .subscribe(result => {
         localStorage.setItem('saloon auth', result.token);
-        console.log(result);
         this._isLoggedIn$.next(true);
       })
   }
