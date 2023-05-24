@@ -17,6 +17,8 @@ import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { UserDetailsComponent } from './pages/user/user-details/user-details.component';
 import { AuthInterceptorProvider } from './auth.interceptor';
 import {MatTableModule} from '@angular/material/table';
+import { ReservationListComponent } from './pages/reservation/reservation-list/reservation-list.component';
+import { ReservationDetailsComponent } from './pages/reservation/reservation-details/reservation-details.component';
 
 
 
@@ -26,7 +28,9 @@ import {MatTableModule} from '@angular/material/table';
     LoginComponent,
     RegisterComponent,
     UserListComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    ReservationListComponent,
+    ReservationDetailsComponent
   ],
   imports: [
     BrowserModule,

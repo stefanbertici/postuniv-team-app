@@ -22,6 +22,7 @@ export class UserListComponent implements OnInit {
       .subscribe(x => this.users = x);
   }
 
+  //Todo: Temporary method, it will be part of a header
   logout(){
     localStorage.removeItem('saloon auth');
     location.reload();

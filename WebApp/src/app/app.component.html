@@ -1,5 +1,6 @@
 
 <router-outlet>
+    <app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>
     <app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list>
     <app-login *ngIf="!(identityService.isLoggedIn$ | async) && !(router.url === '/register')"></app-login>
 </router-outlet>
