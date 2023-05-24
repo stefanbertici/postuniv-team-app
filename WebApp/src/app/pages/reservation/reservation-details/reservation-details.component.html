@@ -1,1 +1,34 @@
-<p>reservation-details works!</p>
+<h3>update reservation</h3>
+
+<div class="form-container">
+    <form class="update_reservation">
+        <mat-form-field>
+            <mat-label>Customer</mat-label>
+            <input type="number" matInput #customer value="{{selectedReservation.customerId}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Serviciu</mat-label>
+            <input type="number" matInput #serviciu value="{{selectedReservation.beautyServiceId}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <input matInput #status value="{{selectedReservation.status}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Data</mat-label>
+            <input matInput #data value="{{selectedReservation.resDate}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Ora</mat-label>
+            <input type="number" matInput #ora value="{{selectedReservation.resHour}}">
+        </mat-form-field>
+
+    </form>
+</div>
+<button mat-button color="primary" (click)="updateReservation(selectedReservation.id, customer.valueAsNumber, 
+serviciu.valueAsNumber, status.value, data.value, ora.valueAsNumber)"><i class="material-icons">save</i>
+</button>

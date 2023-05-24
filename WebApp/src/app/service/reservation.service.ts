@@ -21,6 +21,12 @@ export class ReservationService {
     return this.httpClient
       .delete<Reservation>(reservationRestUrlDelete);
   }
-  
+
+  update(reservationUpdated: Reservation): Observable<Reservation> {
+    const reservationRestUrlUpdate= `${this.reservationApiLink}/${reservationUpdated.id}`;
+    return this.httpClient
+      .put<Reservation>(this.reservationApiLink, reservationUpdated);
+  }
+
 }
 

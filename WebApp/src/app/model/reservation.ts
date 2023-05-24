@@ -3,6 +3,6 @@ export interface Reservation{
     customerId: number,
     beautyServiceId: number,
     status: string,
-    resDate: Date,
+    resDate: string,
     resHour: number
 }

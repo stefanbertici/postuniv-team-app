@@ -10,17 +10,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { UserDetailsComponent } from './pages/user/user-details/user-details.component';
 import { AuthInterceptorProvider } from './auth.interceptor';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { ReservationListComponent } from './pages/reservation/reservation-list/reservation-list.component';
 import { ReservationDetailsComponent } from './pages/reservation/reservation-details/reservation-details.component';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -37,14 +36,15 @@ import { ReservationDetailsComponent } from './pages/reservation/reservation-det
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    
+
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
