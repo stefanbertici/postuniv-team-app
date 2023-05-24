@@ -1,20 +1,20 @@
 <h3>update reservation</h3>
-
+<!--All input fields are disabled, except "Data" and "Hour": goes in line with the update doc provided via Swagger -->
 <div class="form-container">
     <form class="update_reservation">
         <mat-form-field>
             <mat-label>Customer</mat-label>
-            <input type="number" matInput #customer value="{{selectedReservation.customerId}}">
+            <input disabled="disabled" type="number" matInput #customer value="{{selectedReservation.customerId}}">
         </mat-form-field>
         <br>
         <mat-form-field>
             <mat-label>Serviciu</mat-label>
-            <input type="number" matInput #serviciu value="{{selectedReservation.beautyServiceId}}">
+            <input disabled="disabled" type="number" matInput #serviciu value="{{selectedReservation.beautyServiceId}}">
         </mat-form-field>
         <br>
         <mat-form-field>
             <mat-label>Status</mat-label>
-            <input matInput #status value="{{selectedReservation.status}}">
+            <input disabled="disabled" matInput #status value="{{selectedReservation.status}}">
         </mat-form-field>
         <br>
         <mat-form-field>
