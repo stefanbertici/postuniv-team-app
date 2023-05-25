@@ -1,14 +1,16 @@
 package ro.ubb.SaloonApp.dto;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 public record ReservationViewDto(
 
     Integer id,
-    Integer customerId,
-    Integer beautyServiceId,
+    String clientName,
+    String clientEmail,
+    String employeeName,
     String status,
     LocalDate resDate,
-    double resHour){
+    LocalTime resHour){
 }

@@ -1,10 +1,13 @@
 package ro.ubb.SaloonApp.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import jakarta.persistence.*;
 import lombok.*;
 import ro.ubb.SaloonApp.constant.Status;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -25,6 +28,7 @@ public class Reservation {
     private Status status;
     @Column(name = "res_date")
     private LocalDate resDate;
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
     @Column(name = "res_hour")
-    private double resHour;
+    private LocalTime resHour;
 }
