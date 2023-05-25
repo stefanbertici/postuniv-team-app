@@ -25,6 +25,7 @@ import { BeautyListComponent } from './pages/beauty/beauty-list/beauty-list.comp
 import { BeautyAddComponent } from './pages/beauty/beauty-add/beauty-add.component';
 import { CategoryAddComponent } from './pages/category/category-add/category-add.component';
 import { CategoryListComponent } from './pages/category/category-list/category-list.component';
+import { CategoryDetailsComponent } from './pages/category/category-details/category-details.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CategoryListComponent } from './pages/category/category-list/category-l
     BeautyListComponent,
     BeautyAddComponent,
     CategoryAddComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CategoryDetailsComponent
   ],
   imports: [
     BrowserModule,

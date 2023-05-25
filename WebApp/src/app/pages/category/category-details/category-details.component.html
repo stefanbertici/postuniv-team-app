@@ -1,0 +1,12 @@
+<h3>update Category</h3>
+<div class="form-container">
+    <form class="update_category">
+        <mat-form-field>
+            <mat-label>Type</mat-label>
+            <input matInput #name value="{{selectedCategory.name}}">
+        </mat-form-field>
+        <br>
+    </form>
+</div>
+<button mat-button color="primary" (click)="updateCategory(name.value)"><i class="material-icons">save</i>
+</button>

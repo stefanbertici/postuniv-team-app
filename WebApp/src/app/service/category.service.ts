@@ -16,5 +16,20 @@ export class CategoryService {
       .post<Category>(this.categoryApiLink, category);
   }
 
+  getAll(): Observable<Category[]> {
+    return this.httpClient
+      .get<Category[]>(this.categoryApiLink);
+  }
+
+  delete(categoryId: number): Observable<Category> {
+    const categoryRestUrlDelete = `${this.categoryApiLink}/${categoryId}`;
+    return this.httpClient.delete<Category>(categoryRestUrlDelete);
+  }
+
+  update(category: Category): Observable<Category> {
+    const categoryRestUrlUpdate = `${this.categoryApiLink}/${category.id}`;
+    return this.httpClient.put<Category>(categoryRestUrlUpdate, category.name);
+  }
+
 
 }

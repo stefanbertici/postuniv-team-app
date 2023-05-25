@@ -5,6 +5,7 @@
 <button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveCategoryComponent()">New Category</button>
 
 <router-outlet>
+    <app-category-list></app-category-list>
     <app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>
     <app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list>
     <app-login *ngIf="!(identityService.isLoggedIn$ | async) && !(router.url === '/register')"></app-login>
