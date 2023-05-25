@@ -5,7 +5,7 @@ public record BeautyServiceViewDto(
         Integer id,
         String categoryName,
         String name,
-        double duration,
+        double durationInMinutes,
         double price
 ) {
 }

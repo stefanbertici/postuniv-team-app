@@ -18,6 +18,7 @@ public interface BeautyServiceMapper {
 
     List<BeautyServiceViewDto> toBeautyServiceDtos(List<BeautyService> beautyServices);
 
-     @Mapping(target = "categoryName", expression = "java(beautyService.getCategory().getName())")
+    @Mapping(target = "categoryName", expression = "java(beautyService.getCategory().getName())")
+    @Mapping(target = "durationInMinutes", expression = "java(beautyService.getDuration()*beautyService.getNumberOfAvailabilityBlock())")
     BeautyServiceViewDto toBeautyServiceViewDto(BeautyService beautyService);
 }
