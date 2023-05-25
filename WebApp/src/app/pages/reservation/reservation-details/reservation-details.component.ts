@@ -16,10 +16,18 @@ export class ReservationDetailsComponent {
 
   constructor(private matDialogRef: MatDialogRef<UserDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private reservationService: ReservationService) { }
-
-  updateReservation(id: number, customerId: number, beautyServiceId: number,
-    status: string, resDate: string, resHour: number) {
-    let reservationUpdated: Reservation = { id, customerId, beautyServiceId, status, resDate, resHour };
+   
+    // {
+    //   "customerId": 1,
+    //   "beautyServiceID": 1,
+    //   "status": "PENDING",
+    //   "resDate": "2023-05-02",
+    //   "resHour": "00:00:00"
+    // }
+    //Todo: We miss the beautyServiceId from the GET-JSON.
+  updateReservation(id: number, clientName: string, clientEmail: string, employeeName: string, 
+    status: string, resDate: string, resHour: string) {
+    let reservationUpdated: Reservation = { id, clientName, clientEmail, employeeName, status, resDate, resHour };
 
     this.reservationService.update(reservationUpdated)
       .subscribe(_ => console.log("Reservation updated!"));

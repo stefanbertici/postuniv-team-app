@@ -12,7 +12,7 @@ import { ReservationDetailsComponent } from '../reservation-details/reservation-
 
 export class ReservationListComponent implements OnInit {
   reservations: Reservation[] = [];
-  displayedColumns: string[] = ['customer', 'serviciu', 'status', 'data', 'ora', 'actions'];
+  displayedColumns: string[] = ['customer', 'email', 'serviciu', 'status', 'data', 'ora', 'actions'];
 
   constructor(private reservationService: ReservationService, private matDialog: MatDialog) { }
 
@@ -36,7 +36,7 @@ export class ReservationListComponent implements OnInit {
   openUpdateComponent(reservation: Reservation) {
     this.matDialog.open(ReservationDetailsComponent, {
       data: reservation,
-      height: '400px',
+      height: '430px',
       width: '300px',
     });
   }

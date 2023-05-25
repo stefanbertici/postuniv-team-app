@@ -1,8 +1,9 @@
 export interface Reservation{
     id: number,
-    customerId: number,
-    beautyServiceId: number,
+    clientName: string,
+    clientEmail: string,
+    employeeName: string, 
     status: string,
     resDate: string,
-    resHour: number
+    resHour: string
 }
