@@ -3,6 +3,7 @@ import { IdentityService } from './service/identity.service';
 import { Router, withDebugTracing } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ReservationAddComponent } from './pages/reservation/reservation-add/reservation-add.component';
+import { CategoryAddComponent } from './pages/category/category-add/category-add.component';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,18 @@ export class AppComponent {
 
   constructor(public identityService: IdentityService, public router: Router, private matDialog: MatDialog) { }
   
-  openSaveComponent() {
+  openSaveReservationComponent() {
     this.matDialog.open(ReservationAddComponent, {
       height: '400px',
       width: '300px'
     });
   }
+  
+  openSaveCategoryComponent() {
+    this.matDialog.open(CategoryAddComponent, {
+      height: '170px',
+      width: '300px'
+    });
+  }
+
 }

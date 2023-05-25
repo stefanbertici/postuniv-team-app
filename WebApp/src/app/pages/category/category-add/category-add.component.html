@@ -1,0 +1,12 @@
+<h3>new Category</h3>
+<div class="form-container">
+    <form class="add_category">
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+            <input matInput #category>
+        </mat-form-field>
+        <br>
+    </form>
+</div>
+<button mat-button color="primary" (click)="saveCategory(category.value)"><i class="material-icons">save</i>
+</button>

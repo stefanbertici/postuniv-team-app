@@ -21,6 +21,10 @@ import { ReservationListComponent } from './pages/reservation/reservation-list/r
 import { ReservationDetailsComponent } from './pages/reservation/reservation-details/reservation-details.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReservationAddComponent } from './pages/reservation/reservation-add/reservation-add.component';
+import { BeautyListComponent } from './pages/beauty/beauty-list/beauty-list.component';
+import { BeautyAddComponent } from './pages/beauty/beauty-add/beauty-add.component';
+import { CategoryAddComponent } from './pages/category/category-add/category-add.component';
+import { CategoryListComponent } from './pages/category/category-list/category-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { ReservationAddComponent } from './pages/reservation/reservation-add/res
     UserDetailsComponent,
     ReservationListComponent,
     ReservationDetailsComponent,
-    ReservationAddComponent
+    ReservationAddComponent,
+    BeautyListComponent,
+    BeautyAddComponent,
+    CategoryAddComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,

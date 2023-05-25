@@ -1,5 +1,9 @@
-<!--Temporary button| button to be moved in Header or other Navigation Component-->
-<button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveComponent()">New Reservation</button>
+<!--Temporary buttons| the buttons will be moved in the nav header or other relevant Components
+    for the moment just for dev/test purpose
+-->
+<button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveReservationComponent()">New Reservation</button>
+<button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveCategoryComponent()">New Category</button>
+
 <router-outlet>
     <app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>
     <app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list>
