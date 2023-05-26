@@ -32,8 +32,7 @@ public class BeautyServiceService {
         return BeautyServiceMapper.INSTANCE.toBeautyServiceViewDto(foundBeautyService);
     }
 
-    public BeautyServiceViewDto saveBeautyService(@RequestBody BeautyServiceDto beautyServiceDto
-    ) {
+    public BeautyServiceViewDto saveBeautyService(@RequestBody BeautyServiceDto beautyServiceDto) {
         BeautyService beautyServiceToBeSaved = BeautyServiceMapper.INSTANCE.toEntity(beautyServiceDto);
 
         String categoryName = beautyServiceDto.categoryName();
@@ -56,7 +55,7 @@ public class BeautyServiceService {
         beautyServiceToBeUpdated.setCategory(categoryOfUpdatedBeautyService);
         beautyServiceToBeUpdated.setName(beautyServiceDto.name());
         beautyServiceToBeUpdated.setPrice(beautyServiceDto.price());
-        beautyServiceToBeUpdated.setDuration(beautyServiceDto.duration());
+        beautyServiceToBeUpdated.setNumOfAvailabilityBlocks(beautyServiceDto.numOfAvailabilityBlocks());
 
         return BeautyServiceMapper.INSTANCE.toBeautyServiceViewDto(beautyServiceToBeUpdated);
     }

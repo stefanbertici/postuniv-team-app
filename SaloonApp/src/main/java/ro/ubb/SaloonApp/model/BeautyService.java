@@ -14,10 +14,10 @@ public class BeautyService {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private double duration;
     private double price;
     @ManyToOne()
     @JoinColumn(name = "category_id")
     private Category category;
-    private int numberOfAvailabilityBlock;
+    @Column(name = "avail_blocks")
+    private int numOfAvailabilityBlocks;
 }

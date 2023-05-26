@@ -33,9 +33,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/beauty-service/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/beauty-service/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/beauty-service/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/reservation/**").hasAuthority("ADMIN")
                         .requestMatchers("/**/swagger-resources", "/**/swagger-resources/**", "/**/swagger-ui",
-                            "/**/swagger-ui/**", "/**/swagger-ui.html", "/**/swagger-ui.html/**", "/**/v3/api-docs/**",
-                            "/**/auth/register", "/**/auth/login","/**").permitAll() // TODO remove /** after testing phase
+                                "/**/swagger-ui/**", "/**/swagger-ui.html", "/**/swagger-ui.html/**", "/**/v3/api-docs/**",
+                                "/**/auth/register", "/**/auth/login", "/**").permitAll() // TODO remove /** after testing phase
                         .anyRequest().authenticated()
                 )
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

@@ -3,7 +3,7 @@ package ro.ubb.SaloonApp.dto;
 public record BeautyServiceDto(
 
         String name,
-        double duration,
+        int numOfAvailabilityBlocks,
         double price,
         String categoryName
 ) {

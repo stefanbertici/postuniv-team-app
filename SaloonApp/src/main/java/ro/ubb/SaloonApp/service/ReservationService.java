@@ -65,8 +65,8 @@ public class ReservationService {
 
         Reservation reservationToBeUpdated = repositoryChecker.getReservationIfExists(id);
 
-        reservationToBeUpdated.setResDate(reservationUpdateDto.resDate());
-        reservationToBeUpdated.setResHour(reservationUpdateDto.resHour());
+        reservationToBeUpdated.setDate(reservationUpdateDto.resDate());
+        reservationToBeUpdated.setHour(reservationUpdateDto.resHour());
         reservationToBeUpdated.setStatus(MODIFIED);
 
         return ReservationMapper.INSTANCE.toReservationViewDto(reservationToBeUpdated);
