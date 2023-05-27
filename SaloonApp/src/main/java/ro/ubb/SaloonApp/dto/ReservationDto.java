@@ -9,6 +9,6 @@ public record ReservationDto (
     Integer customerId,
     Integer beautyServiceID,
     String status,
-    LocalDate resDate,
-    LocalTime resHour){
+    LocalDate date,
+    LocalTime hour){
 }

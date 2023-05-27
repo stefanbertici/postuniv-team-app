@@ -11,6 +11,6 @@ public record ReservationViewDto(
     String clientEmail,
     String employeeName,
     String status,
-    LocalDate resDate,
-    LocalTime resHour){
+    LocalDate date,
+    LocalTime hour){
 }

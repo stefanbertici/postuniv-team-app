@@ -6,6 +6,6 @@ import java.time.LocalTime;
 
 public record ReservationUpdateDto(
 
-    LocalDate resDate,
-    LocalTime resHour){
+    LocalDate date,
+    LocalTime hour){
 }
