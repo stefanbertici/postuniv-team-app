@@ -24,15 +24,16 @@
         <br>
         <mat-form-field>
             <mat-label>Data</mat-label>
-            <input matInput #data value="{{selectedReservation.resDate}}">
+            <input matInput #data value="{{selectedReservation.date}}">
         </mat-form-field>
         <br>
         <mat-form-field>
             <mat-label>Ora</mat-label>
-            <input matInput #ora value="{{selectedReservation.resHour}}">
+            <input matInput #ora value="{{selectedReservation.hour}}">
         </mat-form-field>
     </form>
 </div>
-<!-- <button mat-button color="primary" (click)="updateReservation(selectedReservation.id, customer.valueAsNumber, email.value,
-serviciu.valueAsNumber, status.value, data.value, ora.valueAsNumber)"><i class="material-icons">save</i>
-</button> -->
+<button mat-button color="primary" 
+(click)="updateReservation(selectedReservation.id, customer.value, email.value,
+employee.value, status.value, data.value, ora.value)"><i class="material-icons">save</i>
+</button>

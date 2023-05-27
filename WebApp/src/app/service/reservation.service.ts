@@ -25,7 +25,8 @@ export class ReservationService {
   update(reservationUpdated: Reservation): Observable<Reservation> {
     const reservationRestUrlUpdate = `${this.reservationApiLink}/${reservationUpdated.id}`;
     //Temporary object for update: goes in line of the JSON provided via swagger for update;
-    let reservationUpdateEntityDto = { resDate: reservationUpdated.resDate, resHour: reservationUpdated.resHour };
+    let reservationUpdateEntityDto = { date: reservationUpdated.date, hour: reservationUpdated.hour };
+
     return this.httpClient
       .put<Reservation>(reservationRestUrlUpdate, reservationUpdateEntityDto);
   }

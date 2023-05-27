@@ -14,8 +14,8 @@ export class ReservationAddComponent {
     private matDialog: MatDialogRef<ReservationAddComponent>) { }
 
   saveReservation(customerId: number, beautyServiceID: number,
-    status: string, resDate: string, resHour: string) {
-    let reservationToBeSaved = { customerId, beautyServiceID, status, resDate, resHour };
+    status: string, date: string, hour: string) {
+    let reservationToBeSaved = { customerId, beautyServiceID, status, date, hour };
 
     this.reservationService.save(reservationToBeSaved)
       .subscribe(_ => console.log("Reservation saved!"));
