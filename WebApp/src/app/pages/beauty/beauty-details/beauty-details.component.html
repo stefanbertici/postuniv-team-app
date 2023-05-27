@@ -1,0 +1,28 @@
+<h3>update Service</h3>
+<div class="form-container">
+    <form class="update_service">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput #name value="{{beautyServiceSelected.name}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>numOfAvailabilityBlocks</mat-label>
+            <input type="number" matInput #numOfAvailabilityBlocks value="{{beautyServiceSelected.durationInMinutes}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input type="number" matInput #price value="{{beautyServiceSelected.price}}">
+        </mat-form-field>
+        <br>
+        <!-- Temporary field: Here we will have a drop box select list-->
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+            <input matInput #category value="{{beautyServiceSelected.categoryName}}">
+        </mat-form-field>
+        <br>
+    </form>
+</div>
+<button mat-button color="primary" (click)="updateBeautyService(name.value, numOfAvailabilityBlocks.valueAsNumber, price.valueAsNumber, category.value)"><i class="material-icons">save</i>
+</button>

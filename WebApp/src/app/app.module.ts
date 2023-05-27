@@ -26,6 +26,7 @@ import { BeautyAddComponent } from './pages/beauty/beauty-add/beauty-add.compone
 import { CategoryAddComponent } from './pages/category/category-add/category-add.component';
 import { CategoryListComponent } from './pages/category/category-list/category-list.component';
 import { CategoryDetailsComponent } from './pages/category/category-details/category-details.component';
+import { BeautyDetailsComponent } from './pages/beauty/beauty-details/beauty-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CategoryDetailsComponent } from './pages/category/category-details/cate
     BeautyAddComponent,
     CategoryAddComponent,
     CategoryListComponent,
-    CategoryDetailsComponent
+    CategoryDetailsComponent,
+    BeautyDetailsComponent
   ],
   imports: [
     BrowserModule,

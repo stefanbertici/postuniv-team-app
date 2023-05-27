@@ -4,6 +4,7 @@ import { Router, withDebugTracing } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ReservationAddComponent } from './pages/reservation/reservation-add/reservation-add.component';
 import { CategoryAddComponent } from './pages/category/category-add/category-add.component';
+import { BeautyAddComponent } from './pages/beauty/beauty-add/beauty-add.component';
 
 @Component({
   selector: 'app-root',
@@ -14,17 +15,24 @@ export class AppComponent {
   title = 'Saloon';
 
   constructor(public identityService: IdentityService, public router: Router, private matDialog: MatDialog) { }
-  
+
   openSaveReservationComponent() {
     this.matDialog.open(ReservationAddComponent, {
       height: '400px',
       width: '300px'
     });
   }
-  
+
   openSaveCategoryComponent() {
     this.matDialog.open(CategoryAddComponent, {
       height: '170px',
+      width: '300px'
+    });
+  }
+
+  openSaveServiceComponent() {
+    this.matDialog.open(BeautyAddComponent, {
+      height: '350px',
       width: '300px'
     });
   }
