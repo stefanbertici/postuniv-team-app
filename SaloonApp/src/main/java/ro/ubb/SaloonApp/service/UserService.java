@@ -14,14 +14,13 @@ import ro.ubb.SaloonApp.model.Reservation;
 import ro.ubb.SaloonApp.model.User;
 import ro.ubb.SaloonApp.repository.ReservationRepository;
 import ro.ubb.SaloonApp.repository.UserRepository;
+import ro.ubb.SaloonApp.service.auth.AvailabilityService;
 import ro.ubb.SaloonApp.utils.RepositoryChecker;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +28,7 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final RepositoryChecker repositoryChecker;
+    private final AvailabilityService availabilityService;
     private final UserRepository userRepository;
     private final ReservationRepository reservationRepository;
 
@@ -70,34 +70,8 @@ public class UserService {
             throw new IllegalArgumentException("User with id = '" + id + "' is not an employee");
         }
 
-        List<LocalTime> availability = constructDefaultAvailabilities();
         List<Reservation> reservations = reservationRepository.findAllByUserIdAndDateOrderByHourAsc(id, date);
 
-        filterAvailabilityBasedOnReservations(reservations, availability);
-
-        return availability;
-    }
-
-    private void filterAvailabilityBasedOnReservations(List<Reservation> reservations, List<LocalTime> defaultAvailability) {
-        reservations.forEach(reservation -> defaultAvailability.removeIf(checkIfTimeIsReserved(reservation)));
-    }
-
-    private static Predicate<LocalTime> checkIfTimeIsReserved(Reservation reservation) {
-        return availability -> availability.equals(reservation.getHour()) || (availability.isAfter(reservation.getHour()) &&
-                availability.isBefore(reservation.getHour().plusMinutes(
-                        30L * reservation.getBeautyService().getNumOfAvailabilityBlocks())));
-    }
-
-    private List<LocalTime> constructDefaultAvailabilities() {
-        List<LocalTime> defaultAvailability = new ArrayList<>();
-
-        LocalTime time = LocalTime.of(9, 0, 0);
-
-        for (int i = 0; i < 16; i++) {
-            defaultAvailability.add(time);
-            time = time.plusMinutes(30);
-        }
-
-        return defaultAvailability;
+        return availabilityService.filterAvailabilityBasedOnReservations(reservations);
     }
 }
