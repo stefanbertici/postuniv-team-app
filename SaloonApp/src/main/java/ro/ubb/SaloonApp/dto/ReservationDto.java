@@ -6,7 +6,8 @@ import java.time.LocalTime;
 public record ReservationDto(
 
         Integer customerId,
-        Integer beautyServiceID,
+        Integer beautyServiceId,
+        Integer employeeId,
         String status,
         LocalDate date,
         LocalTime hour) {

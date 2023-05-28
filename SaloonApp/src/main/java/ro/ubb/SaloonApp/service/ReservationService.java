@@ -13,6 +13,7 @@ import ro.ubb.SaloonApp.model.User;
 import ro.ubb.SaloonApp.repository.ReservationRepository;
 import ro.ubb.SaloonApp.utils.RepositoryChecker;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ro.ubb.SaloonApp.constant.Status.MODIFIED;
@@ -23,6 +24,8 @@ public class ReservationService {
 
     private final ReservationRepository reservationRepository;
     private final RepositoryChecker repositoryChecker;
+
+    private final AvailabilityService availabilityService;
 
     public List<ReservationViewDto> readAll() {
         List<Reservation> reservations = reservationRepository.findAll();
@@ -45,15 +48,19 @@ public class ReservationService {
     }
 
     @Transactional
-    public ReservationViewDto create(ReservationDto reservationDto) {
-        User user = repositoryChecker.getUserIfExists(reservationDto.customerId());
+    public ReservationViewDto create(ReservationDto dto) {
+        User user = repositoryChecker.getUserIfExists(dto.customerId());
+        User employee = repositoryChecker.getEmployeeIfExists(dto.employeeId());
+        BeautyService beautyService = repositoryChecker.getBeautyServiceIfExists(dto.beautyServiceId());
+        List<Reservation> reservationsOfUser = reservationRepository.findAllByEmployeeIdAndDateOrderByHourAsc(employee.getId(), dto.date());
 
-        BeautyService beautyService = repositoryChecker.getBeautyServiceIfExists(reservationDto.beautyServiceID());
+        availabilityService.checkIfReservationPossibleForCreate(dto, beautyService.getNumOfAvailabilityBlocks(),  reservationsOfUser);
 
-        Reservation reservation = ReservationMapper.INSTANCE.toEntity(reservationDto);
+        Reservation reservation = ReservationMapper.INSTANCE.toEntity(dto);
         reservationRepository.save(reservation);
 
         reservation.setUser(user);
+        reservation.setEmployee(employee);
         reservation.setBeautyService(beautyService);
 
         return ReservationMapper.INSTANCE.toReservationViewDto(reservation);
@@ -61,15 +68,19 @@ public class ReservationService {
 
 
     @Transactional
-    public ReservationViewDto update(Integer id, ReservationUpdateDto reservationUpdateDto) {
+    public ReservationViewDto update(Integer id, ReservationUpdateDto dto) {
+        Reservation originalReservation = repositoryChecker.getReservationIfExists(id);
 
-        Reservation reservationToBeUpdated = repositoryChecker.getReservationIfExists(id);
+        int employeeId = originalReservation.getEmployee().getId();
+        LocalDate date = dto.date();
+        List<Reservation> reservationsOfUser = reservationRepository.findAllByEmployeeIdAndDateOrderByHourAsc(employeeId, date);
 
-        reservationToBeUpdated.setDate(reservationUpdateDto.date());
-        reservationToBeUpdated.setHour(reservationUpdateDto.hour());
-        reservationToBeUpdated.setStatus(MODIFIED);
+        availabilityService.checkIfReservationPossibleForUpdate(originalReservation, dto, reservationsOfUser);
 
-        return ReservationMapper.INSTANCE.toReservationViewDto(reservationToBeUpdated);
+        originalReservation.setDate(dto.date());
+        originalReservation.setHour(dto.hour());
+        originalReservation.setStatus(MODIFIED);
+
+        return ReservationMapper.INSTANCE.toReservationViewDto(originalReservation);
     }
-
 }

@@ -21,7 +21,7 @@ public interface ReservationMapper {
 
     @Mapping(target = "clientName", expression = "java(reservation.getUser().getName())")
     @Mapping(target = "clientEmail", expression = "java(reservation.getUser().getEmail())")
-    @Mapping(target = "employeeName", expression = "java(reservation.getBeautyService().getName())")
+    @Mapping(target = "employeeName", expression = "java(reservation.getEmployee().getName())")
     @Mapping(target = "status", expression = "java(reservation.getStatus().name())")
     ReservationViewDto toReservationViewDto(Reservation reservation);
 

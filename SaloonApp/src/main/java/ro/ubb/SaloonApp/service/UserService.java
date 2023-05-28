@@ -14,7 +14,6 @@ import ro.ubb.SaloonApp.model.Reservation;
 import ro.ubb.SaloonApp.model.User;
 import ro.ubb.SaloonApp.repository.ReservationRepository;
 import ro.ubb.SaloonApp.repository.UserRepository;
-import ro.ubb.SaloonApp.service.auth.AvailabilityService;
 import ro.ubb.SaloonApp.utils.RepositoryChecker;
 
 import java.time.LocalDate;
@@ -70,7 +69,7 @@ public class UserService {
             throw new IllegalArgumentException("User with id = '" + id + "' is not an employee");
         }
 
-        List<Reservation> reservations = reservationRepository.findAllByUserIdAndDateOrderByHourAsc(id, date);
+        List<Reservation> reservations = reservationRepository.findAllByEmployeeIdAndDateOrderByHourAsc(id, date);
 
         return availabilityService.filterAvailabilityBasedOnReservations(reservations);
     }

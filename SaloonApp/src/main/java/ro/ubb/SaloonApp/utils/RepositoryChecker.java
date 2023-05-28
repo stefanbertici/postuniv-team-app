@@ -2,6 +2,7 @@ package ro.ubb.SaloonApp.utils;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import ro.ubb.SaloonApp.constant.Role;
 import ro.ubb.SaloonApp.exception.ResourceNotFoundException;
 import ro.ubb.SaloonApp.model.BeautyService;
 import ro.ubb.SaloonApp.model.Category;
@@ -31,9 +32,15 @@ public class RepositoryChecker {
                 .orElseThrow(() -> new ResourceNotFoundException("There is no user with id = '" + id + "'"));
     }
 
-    public User getUserIfExists(String email) {
-        return userRepository.findUserByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("There is no user with email = '" + email + "'"));
+    public User getEmployeeIfExists(Integer id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("There is no user with id = '" + id + "'"));
+
+        if(!user.getRole().equals(Role.EMPLOYEE)) {
+            throw new ResourceNotFoundException("The user with id = '" + id + "' is not an employee");
+        }
+
+        return user;
     }
 
     public void checkIfEmailAlreadyRegistered(String email) {

@@ -10,5 +10,5 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 
     List<Reservation> findAll();
 
-    List<Reservation> findAllByUserIdAndDateOrderByHourAsc(Integer user_id, LocalDate date);
+    List<Reservation> findAllByEmployeeIdAndDateOrderByHourAsc(Integer employeeId, LocalDate date);
 }

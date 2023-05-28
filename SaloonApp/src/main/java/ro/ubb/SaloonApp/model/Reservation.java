@@ -23,6 +23,9 @@ public class Reservation {
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private User employee;
+    @ManyToOne
     @JoinColumn(name = "beautyservice_id")
     private BeautyService beautyService;
     @Enumerated(EnumType.STRING)
