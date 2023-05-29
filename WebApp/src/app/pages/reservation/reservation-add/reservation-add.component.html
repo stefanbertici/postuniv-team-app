@@ -2,11 +2,6 @@
 <div class="form-container">
     <form class="add_reservation">
         <mat-form-field>
-            <mat-label>Customer</mat-label>
-            <input type="number" matInput #customer>
-        </mat-form-field>
-        <br>
-        <mat-form-field>
             <mat-label>Serviciu</mat-label>
             <mat-select #service>
                 <mat-option *ngFor="let service of beautyServiceRecived" [value]="service.id">
@@ -34,6 +29,6 @@
         <br>
     </form>
 </div>
-<button mat-button color="primary" (click)="saveReservation(customer.valueAsNumber, 
-service.value, employee.valueAsNumber, date.value, ora.value)"><i class="material-icons">save</i>
+<button mat-button color="primary" (click)="saveReservation(service.value, employee.valueAsNumber, 
+date.value, ora.value)"><i class="material-icons">save</i>
 </button>

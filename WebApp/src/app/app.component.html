@@ -1,6 +1,7 @@
 <!--Temporary buttons| the buttons will be moved in the nav header or other relevant Components
     for the moment just for dev/test purpose
 -->
+<p *ngIf="identityService.isLoggedIn$ | async">Logged user: {{identityService.loggedUser.sub}}</p>
 <button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveReservationComponent()">New Reservation</button>
 <button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveCategoryComponent()">New Category</button>
 <button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveServiceComponent()">New Service</button>

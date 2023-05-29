@@ -35,11 +35,7 @@ export class AppComponent {
       height: '350px',
       width: '300px'
     });
+    console.log(this.identityService.loggedUser);
   }
 
-    //Todo: Temporary method, it will be part of a header
-    logout() {
-      localStorage.removeItem('saloon auth');
-      location.reload();
-    }
 }
