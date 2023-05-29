@@ -17,7 +17,7 @@
         <br>
         <mat-form-field class="date-time-form-field">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" #date>
+            <input matInput [matDatepicker]="picker" min="{{currentDate | date:'yyyy-MM-dd'}}" #date>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

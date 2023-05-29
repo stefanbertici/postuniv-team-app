@@ -13,7 +13,7 @@ import { ReservationService } from 'src/app/service/reservation.service';
 
 export class ReservationAddComponent implements OnInit {
   beautyServiceRecived: Beauty[] = [];
-
+  currentDate: Date = new Date();
 
   constructor(private reservationService: ReservationService,
     private matDialog: MatDialogRef<ReservationAddComponent>,
