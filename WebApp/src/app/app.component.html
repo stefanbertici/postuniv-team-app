@@ -5,10 +5,9 @@
 <button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveCategoryComponent()">New Category</button>
 <button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveServiceComponent()">New Service</button>
 
-<app-beauty-list></app-beauty-list>
-<router-outlet>
-    <app-category-list></app-category-list>
-    <app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>
-    <app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list>
-    <app-login *ngIf="!(identityService.isLoggedIn$ | async) && !(router.url === '/register')"></app-login>
-</router-outlet>
+<app-beauty-list *ngIf="identityService.isLoggedIn$ | async"></app-beauty-list>
+<app-category-list *ngIf="identityService.isLoggedIn$ | async"></app-category-list>
+<app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>
+<app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list>
+<app-login *ngIf="!(identityService.isLoggedIn$ | async) && !(router.url === '/register')"></app-login>
+<router-outlet></router-outlet>

@@ -27,6 +27,11 @@ import { CategoryAddComponent } from './pages/category/category-add/category-add
 import { CategoryListComponent } from './pages/category/category-list/category-list.component';
 import { CategoryDetailsComponent } from './pages/category/category-details/category-details.component';
 import { BeautyDetailsComponent } from './pages/beauty/beauty-details/beauty-details.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { DatePipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +63,11 @@ import { BeautyDetailsComponent } from './pages/beauty/beauty-details/beauty-det
     MatCardModule,
     MatButtonModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    DatePipe
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<h3>add reservation</h3>
+<h3>add Reservation</h3>
 <div class="form-container">
     <form class="add_reservation">
         <mat-form-field>
@@ -8,25 +8,32 @@
         <br>
         <mat-form-field>
             <mat-label>Serviciu</mat-label>
-            <input type="number" matInput #serviciu>
+            <mat-select #service>
+                <mat-option *ngFor="let service of beautyServiceRecived" [value]="service.id">
+                    {{service.name}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field>
-            <mat-label>Status</mat-label>
-            <input matInput #status>
+            <mat-label>EmployeeId</mat-label>
+            <input type="number" matInput #employee>
         </mat-form-field>
         <br>
-        <mat-form-field>
-            <mat-label>Data</mat-label>
-            <input matInput #data>
-        </mat-form-field>
-        <br>
+        <mat-form-field class="date-form-field">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" #date>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br>
         <mat-form-field>
             <mat-label>Ora</mat-label>
             <input matInput #ora>
         </mat-form-field>
+        <br>
     </form>
 </div>
 <button mat-button color="primary" (click)="saveReservation(customer.valueAsNumber, 
-serviciu.valueAsNumber, status.value, data.value, ora.value)"><i class="material-icons">save</i>
+service.value, employee.valueAsNumber, date.value, ora.value)"><i class="material-icons">save</i>
 </button>
