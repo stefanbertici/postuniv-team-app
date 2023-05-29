@@ -31,7 +31,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { DatePipe } from '@angular/common';
-
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker'; 
 
 @NgModule({
   declarations: [
@@ -68,7 +68,8 @@ import { DatePipe } from '@angular/common';
     MatNativeDateModule,
     MatSelectModule,
     DatePipe,
-    FormsModule
+    FormsModule,
+    NgxMatTimepickerModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

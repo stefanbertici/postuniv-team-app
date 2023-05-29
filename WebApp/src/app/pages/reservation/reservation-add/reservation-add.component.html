@@ -15,20 +15,22 @@
             <input type="number" matInput #employee>
         </mat-form-field>
         <br>
-        <mat-form-field class="date-form-field">
+        <mat-form-field class="date-time-form-field">
             <mat-label>Choose a date</mat-label>
             <input matInput [matDatepicker]="picker" #date>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <br>
-        <mat-form-field>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="date-time-form-field">
             <mat-label>Ora</mat-label>
-            <input matInput #ora>
+            <input matInput [ngxMatTimepicker]="$any(hour)" [format]="24" #ora>
+            <ngx-mat-timepicker-toggle matIconSuffix [for]="hour"></ngx-mat-timepicker-toggle>
+            <ngx-mat-timepicker #hour></ngx-mat-timepicker>
         </mat-form-field>
         <br>
     </form>
 </div>
 <button mat-button color="primary" (click)="saveReservation(service.value, employee.valueAsNumber, 
-date.value, ora.value)"><i class="material-icons">save</i>
+date.value, ora.value+':00')"><i class="material-icons">save</i>
 </button>
