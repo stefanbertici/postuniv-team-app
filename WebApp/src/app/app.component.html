@@ -5,8 +5,6 @@
 <button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveReservationComponent()">New Reservation</button>
 <button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveCategoryComponent()">New Category</button>
 <button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveServiceComponent()">New Service</button>
-<input [ngxMatTimepicker]="$any(picker)">  
-<ngx-mat-timepicker #picker></ngx-mat-timepicker> 
 <app-beauty-list *ngIf="identityService.isLoggedIn$ | async"></app-beauty-list>
 <app-category-list *ngIf="identityService.isLoggedIn$ | async"></app-category-list>
 <app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>
