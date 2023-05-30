@@ -3,6 +3,7 @@ package ro.ubb.SaloonApp.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ro.ubb.SaloonApp.dto.ReservationDto;
 import ro.ubb.SaloonApp.dto.ReservationUpdateDto;
@@ -39,7 +40,7 @@ public class ReservationController {
         return new ResponseEntity<>(reservationViewDto, HttpStatus.OK);
     }
 
-    @PostMapping("/save")
+    @PostMapping()
     ResponseEntity<ReservationViewDto> saveReservation(@RequestBody ReservationDto reservationDto) {
         ReservationViewDto reservationViewDto = reservationService.create(reservationDto);
 
@@ -53,11 +54,21 @@ public class ReservationController {
         return new ResponseEntity<>(reservationViewDto, HttpStatus.OK);
     }
 
-    @GetMapping("/reservationAvailability/{id}")
-    ResponseEntity<String> getReservationAvailability(@PathVariable Integer id) {
-        ReservationViewDto reservationViewDto = reservationService.readOne(id);
-        String reservationAvailability = reservationService.CheckReservationStatus(reservationViewDto);
+    @GetMapping("/{id}/accept")
+    ResponseEntity<String> acceptReservation(@PathVariable Integer id, Authentication authentication) {
+        String response = reservationService.accept(id, authentication);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(reservationAvailability, HttpStatus.OK);
+    @GetMapping("/{id}/complete")
+    ResponseEntity<String> completeReservation(@PathVariable Integer id, Authentication authentication) {
+        String response = reservationService.complete(id, authentication);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/cancel")
+    ResponseEntity<String> cancelReservation(@PathVariable Integer id) {
+        String response = reservationService.cancel(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

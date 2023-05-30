@@ -17,7 +17,7 @@ public class BeautyServiceController {
 
     private final BeautyServiceService beautyService;
 
-    @GetMapping("/readAllBeautyServices")
+    @GetMapping()
     public ResponseEntity<List<BeautyServiceViewDto>> readAllBeautyServices() {
         List<BeautyServiceViewDto> beautyServiceDtos = beautyService.readAllBeautyServices();
 
@@ -31,7 +31,7 @@ public class BeautyServiceController {
         return new ResponseEntity<>(beautyServiceDto, HttpStatus.OK);
     }
 
-    @PostMapping("/save")
+    @PostMapping()
     ResponseEntity<BeautyServiceViewDto> saveBeautyService(@RequestBody BeautyServiceDto beautyServiceDto) {
         BeautyServiceViewDto beautyServiceSaved = beautyService.saveBeautyService(beautyServiceDto);
 

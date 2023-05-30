@@ -1,13 +1,16 @@
 package ro.ubb.SaloonApp.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ro.ubb.SaloonApp.constant.Role;
 import ro.ubb.SaloonApp.constant.Status;
 import ro.ubb.SaloonApp.dto.ReservationDto;
 import ro.ubb.SaloonApp.dto.ReservationUpdateDto;
 import ro.ubb.SaloonApp.dto.ReservationViewDto;
+import ro.ubb.SaloonApp.exception.UnauthorizedException;
 import ro.ubb.SaloonApp.mapper.ReservationMapper;
 import ro.ubb.SaloonApp.model.BeautyService;
 import ro.ubb.SaloonApp.model.Reservation;
@@ -18,6 +21,7 @@ import ro.ubb.SaloonApp.utils.RepositoryChecker;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 import static ro.ubb.SaloonApp.constant.Status.*;
 
@@ -106,19 +110,58 @@ public class ReservationService {
         return ReservationMapper.INSTANCE.toReservationViewDto(reservation);
     }
 
-    public String CheckReservationStatus(ReservationViewDto reservationViewDto) {
-        Integer reservationId = reservationViewDto.id();
-        Reservation reservation = repositoryChecker.getReservationIfExists(reservationId);
-        User userOfReservation = reservation.getUser();
-        User employeeOfReservation = reservation.getEmployee();
-        String userIdOfReservationStringify = String.valueOf(userOfReservation.getId());
+    // TODO: 5/30/2023 endpoint prin care din pending sau modified => accepted de catre employee
+    @Transactional
+    public String accept(Integer id, Authentication authentication) {
+        Optional<? extends GrantedAuthority> optional = authentication.getAuthorities().stream()
+                .filter(authority -> authority.getAuthority().equals("EMPLOYEE"))
+                .findAny();
 
-        if (!reservation.getStatus().equals(CANCELLED)) {
-            if (employeeOfReservation.getRole().equals(Role.EMPLOYEE)) {
-                return userIdOfReservationStringify + "/" + Status.valueOf(String.valueOf(ACCEPTED));
-            }
+        if (optional.isEmpty()) {
+            throw new UnauthorizedException("Only employees can accept reservations");
         }
 
-        return userIdOfReservationStringify + "/" + Status.valueOf(String.valueOf(CANCELLED));
+        Reservation reservation = repositoryChecker.getReservationIfExists(id);
+        if (!reservation.getStatus().equals(MODIFIED) && !reservation.getStatus().equals(PENDING)) {
+            throw new IllegalArgumentException("Only pending or modified reservations can be accepted");
+        }
+
+        reservation.setStatus(ACCEPTED);
+
+        return "Reservation accepted successfully";
+    }
+
+    @Transactional
+    public String complete(Integer id, Authentication authentication) {
+        Optional<? extends GrantedAuthority> optional = authentication.getAuthorities().stream()
+                .filter(authority -> authority.getAuthority().equals("EMPLOYEE"))
+                .findAny();
+
+        if (optional.isEmpty()) {
+            throw new UnauthorizedException("Only employees can accept reservations");
+        }
+
+        Reservation reservation = repositoryChecker.getReservationIfExists(id);
+
+        if (!reservation.getStatus().equals(ACCEPTED)) {
+            throw new IllegalArgumentException("Only accepted reservations can be completed");
+        }
+
+        reservation.setStatus(COMPLETED);
+
+        return "Reservation completed successfully";
+    }
+
+    @Transactional
+    public String cancel(Integer id) {
+        Reservation reservation = repositoryChecker.getReservationIfExists(id);
+
+        if (reservation.getStatus().equals(COMPLETED)) {
+            throw new IllegalArgumentException("Completed reservations cannot be cancelled");
+        }
+
+        reservation.setStatus(CANCELLED);
+
+        return "Reservation cancelled successfully";
     }
 }
