@@ -33,7 +33,7 @@ public class ReservationController {
     }
 
     @DeleteMapping(value = "/{id}")
-    ResponseEntity<ReservationViewDto> deleteReservation(@PathVariable Integer id){
+    ResponseEntity<ReservationViewDto> deleteReservation(@PathVariable Integer id) {
         ReservationViewDto reservationViewDto = reservationService.delete(id);
 
         return new ResponseEntity<>(reservationViewDto, HttpStatus.OK);
@@ -51,5 +51,13 @@ public class ReservationController {
         ReservationViewDto reservationViewDto = reservationService.update(id, reservationUpdateDto);
 
         return new ResponseEntity<>(reservationViewDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/reservationAvailability/{id}")
+    ResponseEntity<String> getReservationAvailability(@PathVariable Integer id) {
+        ReservationViewDto reservationViewDto = reservationService.readOne(id);
+        String reservationAvailability = reservationService.CheckReservationStatus(reservationViewDto);
+
+        return new ResponseEntity<>(reservationAvailability, HttpStatus.OK);
     }
 }

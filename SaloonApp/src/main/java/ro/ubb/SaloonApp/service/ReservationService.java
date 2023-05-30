@@ -3,6 +3,8 @@ package ro.ubb.SaloonApp.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ro.ubb.SaloonApp.constant.Role;
+import ro.ubb.SaloonApp.constant.Status;
 import ro.ubb.SaloonApp.dto.ReservationDto;
 import ro.ubb.SaloonApp.dto.ReservationUpdateDto;
 import ro.ubb.SaloonApp.dto.ReservationViewDto;
@@ -102,5 +104,21 @@ public class ReservationService {
         reservation.setStatus(MODIFIED);
 
         return ReservationMapper.INSTANCE.toReservationViewDto(reservation);
+    }
+
+    public String CheckReservationStatus(ReservationViewDto reservationViewDto) {
+        Integer reservationId = reservationViewDto.id();
+        Reservation reservation = repositoryChecker.getReservationIfExists(reservationId);
+        User userOfReservation = reservation.getUser();
+        User employeeOfReservation = reservation.getEmployee();
+        String userIdOfReservationStringify = String.valueOf(userOfReservation.getId());
+
+        if (!reservation.getStatus().equals(CANCELLED)) {
+            if (employeeOfReservation.getRole().equals(Role.EMPLOYEE)) {
+                return userIdOfReservationStringify + "/" + Status.valueOf(String.valueOf(ACCEPTED));
+            }
+        }
+
+        return userIdOfReservationStringify + "/" + Status.valueOf(String.valueOf(CANCELLED));
     }
 }
