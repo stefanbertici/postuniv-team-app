@@ -14,9 +14,10 @@ import ro.ubb.SaloonApp.repository.ReservationRepository;
 import ro.ubb.SaloonApp.utils.RepositoryChecker;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
-import static ro.ubb.SaloonApp.constant.Status.MODIFIED;
+import static ro.ubb.SaloonApp.constant.Status.*;
 
 @Service
 @RequiredArgsConstructor
@@ -49,12 +50,20 @@ public class ReservationService {
 
     @Transactional
     public ReservationViewDto create(ReservationDto dto) {
+        if (dto.date().isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Reservation date '" + dto.date() + "' cannot be in the past");
+        } else if (dto.date().equals(LocalDate.now()) && dto.hour().isBefore(LocalTime.now())) {
+            throw new IllegalArgumentException("Reservation hour '" + dto.hour() + "' cannot be in the past");
+        }
+
         User user = repositoryChecker.getUserIfExists(dto.customerId());
         User employee = repositoryChecker.getEmployeeIfExists(dto.employeeId());
         BeautyService beautyService = repositoryChecker.getBeautyServiceIfExists(dto.beautyServiceId());
-        List<Reservation> reservationsOfUser = reservationRepository.findAllByEmployeeIdAndDateOrderByHourAsc(employee.getId(), dto.date());
+        List<Reservation> reservationsOfUser = reservationRepository
+                .findAllByEmployeeIdAndDateOrderByHourAsc(employee.getId(), dto.date());
 
-        availabilityService.checkIfReservationPossibleForCreate(dto, beautyService.getNumOfAvailabilityBlocks(),  reservationsOfUser);
+        availabilityService.checkIfReservationPossibleForCreate(
+                dto, beautyService.getNumOfAvailabilityBlocks(), reservationsOfUser);
 
         Reservation reservation = ReservationMapper.INSTANCE.toEntity(dto);
         reservationRepository.save(reservation);
@@ -62,25 +71,36 @@ public class ReservationService {
         reservation.setUser(user);
         reservation.setEmployee(employee);
         reservation.setBeautyService(beautyService);
+        reservation.setStatus(PENDING);
 
         return ReservationMapper.INSTANCE.toReservationViewDto(reservation);
     }
 
-
     @Transactional
     public ReservationViewDto update(Integer id, ReservationUpdateDto dto) {
-        Reservation originalReservation = repositoryChecker.getReservationIfExists(id);
+        Reservation reservation = repositoryChecker.getReservationIfExists(id);
 
-        int employeeId = originalReservation.getEmployee().getId();
+        if (reservation.getStatus().equals(COMPLETED)) {
+            throw new IllegalArgumentException("Completed reservations cannot be modified");
+        }
+
+        if (dto.date().isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Reservation date '" + dto.date() + "' cannot be in the past");
+        } else if (dto.date().equals(LocalDate.now()) && dto.hour().isBefore(LocalTime.now())) {
+            throw new IllegalArgumentException("Reservation hour '" + dto.hour() + "' cannot be in the past");
+        }
+
+        int employeeId = reservation.getEmployee().getId();
         LocalDate date = dto.date();
-        List<Reservation> reservationsOfUser = reservationRepository.findAllByEmployeeIdAndDateOrderByHourAsc(employeeId, date);
+        List<Reservation> reservationsOfEmployee = reservationRepository
+                .findAllByEmployeeIdAndDateOrderByHourAsc(employeeId, date);
 
-        availabilityService.checkIfReservationPossibleForUpdate(originalReservation, dto, reservationsOfUser);
+        availabilityService.checkIfReservationPossibleForUpdate(reservation, dto, reservationsOfEmployee);
 
-        originalReservation.setDate(dto.date());
-        originalReservation.setHour(dto.hour());
-        originalReservation.setStatus(MODIFIED);
+        reservation.setDate(dto.date());
+        reservation.setHour(dto.hour());
+        reservation.setStatus(MODIFIED);
 
-        return ReservationMapper.INSTANCE.toReservationViewDto(originalReservation);
+        return ReservationMapper.INSTANCE.toReservationViewDto(reservation);
     }
 }

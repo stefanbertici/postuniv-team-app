@@ -9,6 +9,7 @@ import ro.ubb.SaloonApp.model.Reservation;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,14 +20,14 @@ import static ro.ubb.SaloonApp.constant.Availability.*;
 public class AvailabilityService {
 
     public List<LocalTime> filterAvailabilityBasedOnReservations(List<Reservation> reservations) {
-        List<LocalTime> availability = constructAvailabilities(
+        List<LocalTime> availabilityBlocks = constructTimeBlocks(
                 DEFAULT_START_HOUR.value, DEFAULT_START_MINUTE.value, DEFAULT_AVAILABILITY_BLOCKS.value);
-        reservations.forEach(reservation -> availability.removeIf(checkIfTimeIsReserved(reservation)));
+        reservations.forEach(reservation -> availabilityBlocks.removeIf(checkIfTimeIsReserved(reservation)));
 
-        return availability;
+        return availabilityBlocks;
     }
 
-    private List<LocalTime> constructAvailabilities(int startHour, int startMinute, int numOfAvailabilityBlocks ) {
+    private List<LocalTime> constructTimeBlocks(int startHour, int startMinute, int numOfAvailabilityBlocks ) {
         List<LocalTime> defaultAvailability = new ArrayList<>();
 
         LocalTime time = LocalTime.of(startHour, startMinute, 0);
@@ -39,39 +40,44 @@ public class AvailabilityService {
         return defaultAvailability;
     }
 
-    private static Predicate<LocalTime> checkIfTimeIsReserved(Reservation reservation) {
-        return availability -> availability.equals(reservation.getHour()) || (availability.isAfter(reservation.getHour()) &&
+    private Predicate<LocalTime> checkIfTimeIsReserved(Reservation reservation) {
+        return availability -> availability.equals(
+                reservation.getHour()) || (availability.isAfter(reservation.getHour()) &&
                 availability.isBefore(reservation.getHour().plusMinutes(
                         30L * reservation.getBeautyService().getNumOfAvailabilityBlocks())));
     }
 
-    public void checkIfReservationPossibleForCreate(ReservationDto reservationDto, int numOfAvailabilityBlocks, List<Reservation> reservationsOfUser) {
-        List<LocalTime> reservationList = constructAvailabilities(
-                reservationDto.hour().getHour(), reservationDto.hour().getMinute(), numOfAvailabilityBlocks);
-        List<LocalTime> availabilitiesOfUser = filterAvailabilityBasedOnReservations(reservationsOfUser);
+    public void checkIfReservationPossibleForCreate(ReservationDto dto,
+        int numOfAvailabilityBlocks, List<Reservation> reservationsOfEmployee) {
 
-        if(!availabilitiesOfUser.containsAll(reservationList)) {
+        List<LocalTime> reservationBlocks = constructTimeBlocks(
+                dto.hour().getHour(), dto.hour().getMinute(), numOfAvailabilityBlocks);
+        List<LocalTime> availabilitiesOfEmployee = filterAvailabilityBasedOnReservations(reservationsOfEmployee);
+
+        if(!new HashSet<>(availabilitiesOfEmployee).containsAll(reservationBlocks)) {
             throw new IllegalArgumentException("There is no availability for your selected time");
         }
     }
 
-    public void checkIfReservationPossibleForUpdate(Reservation originalReservation, ReservationUpdateDto reservationUpdateDto, List<Reservation> reservationsOfUser) {
-        LocalTime originalTime = originalReservation.getHour();
-        LocalDate originalDate = originalReservation.getDate();
-        int numOfAvailabilityBlocks = originalReservation.getBeautyService().getNumOfAvailabilityBlocks();
+    public void checkIfReservationPossibleForUpdate(Reservation reservation,
+        ReservationUpdateDto dto, List<Reservation> reservationsOfEmployee) {
 
-        List<LocalTime> updatedReservationList = constructAvailabilities(
-            reservationUpdateDto.hour().getHour(), reservationUpdateDto.hour().getMinute(), numOfAvailabilityBlocks);
-        List<LocalTime> availabilitiesOfUser = filterAvailabilityBasedOnReservations(reservationsOfUser);
+        LocalTime originalTime = reservation.getHour();
+        LocalDate originalDate = reservation.getDate();
+        int numOfAvailabilityBlocks = reservation.getBeautyService().getNumOfAvailabilityBlocks();
 
-        boolean isDateModified = !originalDate.equals(reservationUpdateDto.date());
-        if(!isDateModified) {
-            List<LocalTime> originalReservationList = constructAvailabilities(
+        List<LocalTime> reservationBlocks = constructTimeBlocks(
+            dto.hour().getHour(), dto.hour().getMinute(), numOfAvailabilityBlocks);
+        List<LocalTime> availabilitiesOfEmployee = filterAvailabilityBasedOnReservations(reservationsOfEmployee);
+
+        boolean isSameDate = originalDate.equals(dto.date());
+        if(isSameDate) {
+            List<LocalTime> originalReservationBlocks = constructTimeBlocks(
                     originalTime.getHour(), originalTime.getMinute(), numOfAvailabilityBlocks);
-            availabilitiesOfUser.addAll(originalReservationList);
+            availabilitiesOfEmployee.addAll(originalReservationBlocks);
         }
 
-        if(!availabilitiesOfUser.containsAll(updatedReservationList)) {
+        if(!new HashSet<>(availabilitiesOfEmployee).containsAll(reservationBlocks)) {
             throw new IllegalArgumentException("There is no availability for your selected time");
         }
     }

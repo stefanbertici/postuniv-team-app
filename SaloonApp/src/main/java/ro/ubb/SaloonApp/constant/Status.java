@@ -5,5 +5,5 @@ public enum Status {
     PENDING,
     MODIFIED,
     ACCEPTED,
-    FINISHED;
+    COMPLETED;
 }
