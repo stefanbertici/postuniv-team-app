@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Beauty } from 'src/app/model/beauty';
 import { User } from 'src/app/model/user';
+import { UserLogged } from 'src/app/model/user-logged';
 import { BeautyService } from 'src/app/service/beauty.service';
 import { IdentityService } from 'src/app/service/identity.service';
 import { ReservationService } from 'src/app/service/reservation.service';
@@ -17,6 +18,7 @@ export class ReservationAddComponent implements OnInit {
   beautyServiceRecived: Beauty[] = [];
   employeeList: User[] = [];
   currentDate: Date = new Date();
+  hasRole: UserLogged = Object.create(null);
 
   constructor(private reservationService: ReservationService,
     private matDialog: MatDialogRef<ReservationAddComponent>,
@@ -26,19 +28,29 @@ export class ReservationAddComponent implements OnInit {
   ngOnInit(): void {
     this.fetchAvailableServices();
     this.fetchEmployees();
+    this.hasRole = this.identityService.loggedUser;
   }
 
   saveReservation(beautyServiceId: number, employeeId: number, date: string, hour: string) {
     let formattedDate: string = new Date(date).toLocaleDateString('fr-CA').toString(); //YYYY-MM-DD
-    //Todo: ENUMS for hardcoded values;
     let reservationToBeSaved = {
-      customerId: this.identityService.loggedUser.id,
-      beautyServiceId, employeeId, status: 'PENDING', date: formattedDate, hour
+      customerId: this.hasRole.id, beautyServiceId, employeeId,
+      status: 'PENDING', date: formattedDate, hour
     };
 
     this.reservationService.save(reservationToBeSaved)
       .subscribe(_ => console.log("Reservation saved!"));
+  }
 
+  saveReservationCustomerById(beautyServiceId: number, customerId: number, employeeId: number, date: string, hour: string) {
+    let formattedDate: string = new Date(date).toLocaleDateString('fr-CA').toString(); //YYYY-MM-DD
+    let reservationToBeSaved = {
+      customerId, beautyServiceId, employeeId,
+      status: 'PENDING', date: formattedDate, hour
+    };
+    console.log(reservationToBeSaved);
+    this.reservationService.save(reservationToBeSaved)
+      .subscribe(_ => console.log("Reservation saved!"));
   }
 
   fetchAvailableServices() {

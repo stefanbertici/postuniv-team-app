@@ -35,7 +35,6 @@ export class AppComponent {
       height: '350px',
       width: '300px'
     });
-    console.log(this.identityService.loggedUser);
   }
 
 }

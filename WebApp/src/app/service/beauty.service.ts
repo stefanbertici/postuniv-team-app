@@ -12,16 +12,14 @@ export class BeautyService {
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<Beauty[]> {
-    const beautyServicesApiLinkFetch: string = "http://localhost:8080/beauty-service/readAllBeautyServices";
     return this.httpClient
-      .get<Beauty[]>(beautyServicesApiLinkFetch);
+      .get<Beauty[]>(this.beautyServicesApiLink);
   }
 
   //Todo: Any because different field values: To be reported
   save(beautyService: any): Observable<any> {
-    const beautyServicesSaveApiLink = "http://localhost:8080/beauty-service/save";
     return this.httpClient
-      .post<any>(beautyServicesSaveApiLink, beautyService);
+      .post<any>(this.beautyServicesApiLink, beautyService);
   }
 
   delete(beautyServiceId: number): Observable<Beauty> {
@@ -33,7 +31,6 @@ export class BeautyService {
   //Todo: Any because different field values: To be reported
   update(beautyService: any): Observable<any> {
     const beautyServiceRestUrlUpdate = `${this.beautyServicesApiLink}/${beautyService.id}`;
-    
     return this.httpClient
       .put<any>(beautyServiceRestUrlUpdate, beautyService);
   }

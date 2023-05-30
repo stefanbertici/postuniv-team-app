@@ -1,5 +1,50 @@
 <h3>add Reservation</h3>
-<div class="form-container">
+<div class="form-container" *ngIf="hasRole.role=='ADMIN'">
+    <form class="add_reservation">
+        <mat-form-field>
+            <mat-label>Customer</mat-label>
+            <input type="number" matInput #customerId>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Serviciu</mat-label>
+            <mat-select #service>
+                <mat-option *ngFor="let service of beautyServiceRecived" [value]="service.id">
+                    {{service.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Employee</mat-label>
+            <mat-select #employee>
+                <mat-option *ngFor="let employee of employeeList" [value]="employee.id">
+                    {{employee.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="date-time-form-field">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" min="{{currentDate | date:'yyyy-MM-dd'}}" #date>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="date-time-form-field">
+            <mat-label>Ora</mat-label>
+            <input matInput [ngxMatTimepicker]="$any(hour)" [format]="24" #ora>
+            <ngx-mat-timepicker-toggle matIconSuffix [for]="hour"></ngx-mat-timepicker-toggle>
+            <ngx-mat-timepicker #hour></ngx-mat-timepicker>
+        </mat-form-field>
+        <br>
+    </form>
+    <button mat-button color="primary" (click)="saveReservationCustomerById(service.value, customerId.valueAsNumber, employee.value, 
+date.value, ora.value+':00')"><i class="material-icons">save</i>
+</button>
+</div>
+<!----------------------------------------------CUSTOMER----------------------------------------------------------->
+<div class="form-container" *ngIf="hasRole.role=='CUSTOMER'">
     <form class="add_reservation">
         <mat-form-field>
             <mat-label>Serviciu</mat-label>
@@ -18,11 +63,6 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <!-- <mat-form-field>                                To be reused for ADMIN ROLE
-            <mat-label>EmployeeId</mat-label>
-            <input type="number" matInput #employee>
-        </mat-form-field>
-        <br> -->
         <br>
         <mat-form-field class="date-time-form-field">
             <mat-label>Choose a date</mat-label>
@@ -39,7 +79,9 @@
         </mat-form-field>
         <br>
     </form>
-</div>
-<button mat-button color="primary" (click)="saveReservation(service.value, employee.value, 
+    <button mat-button color="primary" (click)="saveReservation(service.value, employee.value, 
 date.value, ora.value+':00')"><i class="material-icons">save</i>
 </button>
+</div>
+
+

@@ -33,11 +33,8 @@ export class ReservationService {
 
   //TODO: Type should be defined after we are getting a clear image of how a reservation will look as JSON
   save(reservation: any): Observable<any> {
-    //Suggession: Refactoring the url based on BackendPotential Suggesion: "/save not necessary";
-    const reservationRestUrlSave = `${this.reservationApiLink}/save`;
-
     return this.httpClient
-      .post<any>(reservationRestUrlSave, reservation);
+      .post<any>(this.reservationApiLink, reservation);
   }
 
 }
