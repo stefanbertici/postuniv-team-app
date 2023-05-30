@@ -11,9 +11,18 @@
         </mat-form-field>
         <br>
         <mat-form-field>
+            <mat-label>Employee</mat-label>
+            <mat-select #employee>
+                <mat-option *ngFor="let employee of employeeList" [value]="employee.id">
+                    {{employee.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- <mat-form-field>                                To be reused for ADMIN ROLE
             <mat-label>EmployeeId</mat-label>
             <input type="number" matInput #employee>
         </mat-form-field>
+        <br> -->
         <br>
         <mat-form-field class="date-time-form-field">
             <mat-label>Choose a date</mat-label>
@@ -31,6 +40,6 @@
         <br>
     </form>
 </div>
-<button mat-button color="primary" (click)="saveReservation(service.value, employee.valueAsNumber, 
+<button mat-button color="primary" (click)="saveReservation(service.value, employee.value, 
 date.value, ora.value+':00')"><i class="material-icons">save</i>
 </button>
