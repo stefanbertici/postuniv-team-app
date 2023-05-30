@@ -110,7 +110,6 @@ public class ReservationService {
         return ReservationMapper.INSTANCE.toReservationViewDto(reservation);
     }
 
-    // TODO: 5/30/2023 endpoint prin care din pending sau modified => accepted de catre employee
     @Transactional
     public String accept(Integer id, Authentication authentication) {
         Optional<? extends GrantedAuthority> optional = authentication.getAuthorities().stream()
