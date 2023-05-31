@@ -2,10 +2,13 @@
     for the moment just for dev/test purpose
 -->
 <p *ngIf="identityService.isLoggedIn$ | async">Logged user: {{identityService.loggedUser.sub}}</p>
+<button mat-button [matMenuTriggerFor]="menu" *ngIf="identityService.isLoggedIn$ | async"><i class="material-icons">create_new_folder</i></button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="openSaveReservationComponent()">Reservation</button>
+  <button mat-menu-item (click)="openSaveCategoryComponent()">Category</button>
+  <button mat-menu-item (click)="openSaveServiceComponent()">Service</button>
+</mat-menu>
 
-<button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveReservationComponent()">New Reservation</button>
-<button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveCategoryComponent()">New Category</button>
-<button *ngIf="identityService.isLoggedIn$ | async" mat-button color="primary" (click)="openSaveServiceComponent()">New Service</button>
 <app-beauty-list *ngIf="identityService.isLoggedIn$ | async"></app-beauty-list>
 <app-category-list *ngIf="identityService.isLoggedIn$ | async"></app-category-list>
 <app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>

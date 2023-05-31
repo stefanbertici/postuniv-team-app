@@ -31,8 +31,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { DatePipe } from '@angular/common';
-import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
-import { ReservationStatusComponent } from './pages/reservation/reservation-status/reservation-status.component'; 
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { ReservationStatusComponent } from './pages/reservation/reservation-status/reservation-status.component';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import { ReservationStatusComponent } from './pages/reservation/reservation-stat
     MatSelectModule,
     DatePipe,
     FormsModule,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
+    MatMenuModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

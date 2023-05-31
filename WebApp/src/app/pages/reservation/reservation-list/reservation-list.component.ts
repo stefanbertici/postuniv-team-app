@@ -5,6 +5,7 @@ import { ReservationService } from 'src/app/service/reservation.service';
 import { ReservationDetailsComponent } from '../reservation-details/reservation-details.component';
 import { IdentityService } from 'src/app/service/identity.service';
 import { ReservationStatusComponent } from '../reservation-status/reservation-status.component';
+import { UserLogged } from 'src/app/model/user-logged';
 
 @Component({
   selector: 'app-reservation-list',
@@ -15,12 +16,13 @@ import { ReservationStatusComponent } from '../reservation-status/reservation-st
 export class ReservationListComponent implements OnInit {
   reservations: Reservation[] = [];
   displayedColumns: string[] = ['customer', 'email', 'serviciu', 'status', 'data', 'ora', 'actions'];
+  hasRole: UserLogged = Object.create(null);
  
-  
   constructor(private reservationService: ReservationService, private identityService: IdentityService,private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.readAll();
+    this.hasRole = this.identityService.loggedUser;
   }
 
   readAll() {
