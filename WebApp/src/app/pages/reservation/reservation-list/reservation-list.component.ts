@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Reservation } from 'src/app/model/reservation';
 import { ReservationService } from 'src/app/service/reservation.service';
 import { ReservationDetailsComponent } from '../reservation-details/reservation-details.component';
+import { IdentityService } from 'src/app/service/identity.service';
+import { ReservationStatusComponent } from '../reservation-status/reservation-status.component';
 
 @Component({
   selector: 'app-reservation-list',
@@ -13,8 +15,9 @@ import { ReservationDetailsComponent } from '../reservation-details/reservation-
 export class ReservationListComponent implements OnInit {
   reservations: Reservation[] = [];
   displayedColumns: string[] = ['customer', 'email', 'serviciu', 'status', 'data', 'ora', 'actions'];
-
-  constructor(private reservationService: ReservationService, private matDialog: MatDialog) { }
+ 
+  
+  constructor(private reservationService: ReservationService, private identityService: IdentityService,private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.readAll();
@@ -37,6 +40,14 @@ export class ReservationListComponent implements OnInit {
     this.matDialog.open(ReservationDetailsComponent, {
       data: reservation,
       height: '450px',
+      width: '300px',
+    });
+  }
+
+  openStatusComponent(reservation: Reservation) {
+    this.matDialog.open(ReservationStatusComponent, {
+      data: reservation,
+      height: '170px',
       width: '300px',
     });
   }

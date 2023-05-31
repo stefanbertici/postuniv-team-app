@@ -1,0 +1,18 @@
+<h3>reservation Status</h3>
+<div class="form-container">
+    <form class="update_status">
+        <mat-form-field>
+            <mat-label>Serviciu</mat-label>
+            <mat-select #status>
+                <mat-option *ngFor="let status of statuses" [value]="status.id" [disabled]="status.active">
+                    {{status.status}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+    </form>
+    <button mat-button color="primary" (click)="reservationStatus(status.value)"><i class="material-icons">save</i>
+</button>
+</div>
+
+

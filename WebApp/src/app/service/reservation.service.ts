@@ -37,5 +37,23 @@ export class ReservationService {
       .post<any>(this.reservationApiLink, reservation);
   }
 
+  complete(reservationId: number): Observable<Reservation> {
+    const reservationRestUrlComplete = `${this.reservationApiLink}/${reservationId}/complete`;
+    return this.httpClient
+      .get<Reservation>(reservationRestUrlComplete);
+  }
+
+  cancel(reservationId: number): Observable<Reservation> {
+    const reservationRestUrlCancel = `${this.reservationApiLink}/${reservationId}/cancel`;
+    return this.httpClient
+      .get<Reservation>(reservationRestUrlCancel);
+  }
+
+  accept(reservationId: number): Observable<Reservation> {
+    const reservationRestUrlAccept = `${this.reservationApiLink}/${reservationId}/accept`;
+    return this.httpClient
+      .get<Reservation>(reservationRestUrlAccept);
+  }
+
 }
 
