@@ -8,10 +8,15 @@
   <button mat-menu-item (click)="openSaveCategoryComponent()">Category</button>
   <button mat-menu-item (click)="openSaveServiceComponent()">Service</button>
 </mat-menu>
-
-<app-beauty-list *ngIf="identityService.isLoggedIn$ | async"></app-beauty-list>
+<div class="temporar" *ngIf="identityService.isLoggedIn$ | async">
+<a routerLink="/categories"><i class="material-icons">category</i></a>
+<a routerLink="/services"><i class="material-icons">design_services</i></a>
+<a routerLink="/users"><i class="material-icons">people</i></a>
+<a routerLink="/reservations"><i class="material-icons">schedule</i></a>
+</div>
+<!-- <app-beauty-list *ngIf="identityService.isLoggedIn$ | async"></app-beauty-list>
 <app-category-list *ngIf="identityService.isLoggedIn$ | async"></app-category-list>
 <app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>
-<app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list>
+<app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list> -->
 <app-login *ngIf="!(identityService.isLoggedIn$ | async) && !(router.url === '/register')"></app-login>
 <router-outlet></router-outlet>
