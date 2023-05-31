@@ -2,7 +2,7 @@
 <div class="form-container">
     <form class="update_status">
         <mat-form-field>
-            <mat-label>Serviciu</mat-label>
+            <mat-label>Status</mat-label>
             <mat-select #status>
                 <mat-option *ngFor="let status of statuses" [value]="status.id" [disabled]="status.active">
                     {{status.status}}
