@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IdentityService } from './service/identity.service';
-import { Router, withDebugTracing } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ReservationAddComponent } from './pages/reservation/reservation-add/reservation-add.component';
 import { CategoryAddComponent } from './pages/category/category-add/category-add.component';
@@ -35,6 +35,13 @@ export class AppComponent {
       height: '350px',
       width: '300px'
     });
+  }
+
+  logout() {
+    if (confirm("Logging out... Are you sure?")) {
+      localStorage.removeItem('saloon auth');
+      location.reload();
+    }
   }
 
 }

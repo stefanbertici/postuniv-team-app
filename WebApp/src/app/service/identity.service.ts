@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { AuthApiService } from './auth-api.service';
 import { FormGroup } from '@angular/forms';
 import { UserLogged } from '../model/user-logged';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class IdentityService {
     return localStorage.getItem('saloon auth');
   }
 
-  constructor(private authApiService: AuthApiService) {
+  constructor(private authApiService: AuthApiService, private route: Router) {
     this._isLoggedIn$.next(!!this.token);
     if (this.token) {
       this.loggedUser = this.getLoggedUser(this.token);
@@ -35,6 +36,7 @@ export class IdentityService {
         localStorage.setItem('saloon auth', result.token);
         this.loggedUser = this.getLoggedUser(result.token);
         this._isLoggedIn$.next(true);
+        this.route.navigate(['/reservations']);
       })
   }
 

@@ -25,7 +25,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   delete(categoryId: number) {
-    if (confirm("Are you sure?")) {
+    if (confirm("You are about to delete... Are you sure?")) {
       this.categoryService.delete(categoryId)
         .subscribe(_ => console.log("Category item deleted!"));
     }

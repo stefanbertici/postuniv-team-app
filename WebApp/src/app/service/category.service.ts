@@ -28,8 +28,8 @@ export class CategoryService {
 
   update(category: Category): Observable<Category> {
     const categoryRestUrlUpdate = `${this.categoryApiLink}/${category.id}`;
-    return this.httpClient.put<Category>(categoryRestUrlUpdate, category.name);
+    let newCategoryName = {name: category.name};
+    return this.httpClient.put<Category>(categoryRestUrlUpdate, newCategoryName);
   }
-
 
 }
