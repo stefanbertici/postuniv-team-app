@@ -45,7 +45,7 @@
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let element"> 
         <i class="material-icons" (click)="openUpdateComponent(element)">edit_note</i>
-        <i *ngIf="hasRole.role!='CUSTOMER'"class="material-icons" (click)="openStatusComponent(element)">schedule_send</i>
+        <i *ngIf="hasRole.role!='CUSTOMER'"class="material-icons" (click)="openStatusComponent(element)">flag</i>
         <i class="material-icons" (click)="delete(element)">delete_outline</i>
       </td>
   </ng-container>
