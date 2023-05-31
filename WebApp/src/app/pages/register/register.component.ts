@@ -28,10 +28,7 @@ export class RegisterComponent {
   register() {
     if (this.formGroup.valid) {
       this.identityService.register(this.formGroup);
-      console.log(this.identityService.errorRegister);
-      alert('User registred');                                    //TODO: de implementat verificare
     }
   }
-  
 
 }

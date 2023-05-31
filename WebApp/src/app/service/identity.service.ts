@@ -12,7 +12,6 @@ export class IdentityService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
   loggedUser!: UserLogged;
-  errorRegister: string = '';
 
   get token(): any {
     return localStorage.getItem('saloon auth');
@@ -42,9 +41,15 @@ export class IdentityService {
 
   register(formGroup: FormGroup) {
     this.authApiService.getRegistered(formGroup.value)
-      .subscribe(_ => console.log("ok!"));
-    location.reload();
-    //Todo: Mesaj confirmare user inregistrat/sau eroare!
+      .subscribe({
+        next: _ => {
+          alert("done");
+          location.reload();
+        },
+        error: (err: any) => {
+          alert("Email existent!");
+        },
+      });
   }
 
   private getLoggedUser(token: string): UserLogged {
