@@ -19,10 +19,11 @@
         <button mat-raised-button color="primary" type="submit"><i class="material-icons">login</i></button>
       </form>
       <br>
+      <p class="credentials" *ngIf="formGroup.errors?.['unauthenticated']">Bad credentials!</p>
       <a routerLink="/register">r e g i s t e r</a>
       <br>
       </mat-card>
     </div>
-    </div>
+  </div>
     
     

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { delay } from 'rxjs';
 import { IdentityService } from 'src/app/service/identity.service';
 
 @Component({
@@ -27,7 +28,11 @@ export class LoginComponent {
 
   login() {
     if (this.formGroup.valid) {
-      this.identityService.login(this.formGroup);
+      const login = this.identityService.login(this.formGroup);
+
+      if(this.router.url === '/login'){                           ///TODO: Nu stiu daca o sa ramana asa;
+        this.formGroup.setErrors({ unauthenticated: true });
+      }
     }
   }
 

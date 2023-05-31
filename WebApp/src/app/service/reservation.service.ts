@@ -16,6 +16,11 @@ export class ReservationService {
       .get<Reservation[]>(this.reservationApiLink);
   }
 
+  getAllByCustomer(customerId: number):Observable<Reservation[]>{
+    const reservationRestUrlDelete = `${this.reservationApiLink}/customer/${customerId}`;
+    return this.httpClient.get<Reservation[]>(reservationRestUrlDelete);
+  }
+
   delete(reservationId: number): Observable<Reservation> {
     const reservationRestUrlDelete = `${this.reservationApiLink}/${reservationId}`;
     return this.httpClient

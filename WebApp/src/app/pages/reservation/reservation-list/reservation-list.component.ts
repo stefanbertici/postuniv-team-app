@@ -7,6 +7,7 @@ import { IdentityService } from 'src/app/service/identity.service';
 import { ReservationStatusComponent } from '../reservation-status/reservation-status.component';
 import { UserLogged } from 'src/app/model/user-logged';
 
+
 @Component({
   selector: 'app-reservation-list',
   templateUrl: './reservation-list.component.html',
@@ -15,26 +16,32 @@ import { UserLogged } from 'src/app/model/user-logged';
 
 export class ReservationListComponent implements OnInit {
   reservations: Reservation[] = [];
+
   displayedColumns: string[] = ['customer', 'email', 'serviciu', 'status', 'data', 'ora', 'actions'];
   hasRole: UserLogged = Object.create(null);
- 
-  constructor(private reservationService: ReservationService, private identityService: IdentityService,private matDialog: MatDialog) { }
+
+  constructor(private reservationService: ReservationService, private identityService: IdentityService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.readAll();
     this.hasRole = this.identityService.loggedUser;
+    this.readAll();
   }
 
   readAll() {
-    this.reservationService.getAll()
-      .subscribe(x => this.reservations = x);
+    if (this.hasRole.role != 'CUSTOMER') {
+      this.reservationService.getAll()
+        .subscribe(x => this.reservations = x);
+    } else {
+      this.reservationService.getAllByCustomer(this.hasRole.id)
+        .subscribe(x => this.reservations = x);
+    }
   }
 
   delete(reservationId: Reservation) {
     if (confirm("Are you sure?")) {
       this.reservationService.delete(reservationId.id)
         .subscribe(_ => console.log("Reservation deleted!"));
-        location.reload();
+      location.reload();
     }
   }
 

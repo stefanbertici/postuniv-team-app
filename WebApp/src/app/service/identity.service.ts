@@ -11,6 +11,7 @@ export class IdentityService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
   loggedUser!: UserLogged;
+  errorRegister: string = '';
 
   get token(): any {
     return localStorage.getItem('saloon auth');

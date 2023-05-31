@@ -34,6 +34,7 @@ import { DatePipe } from '@angular/common';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { ReservationStatusComponent } from './pages/reservation/reservation-status/reservation-status.component';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { MatMenuModule } from '@angular/material/menu';
     DatePipe,
     FormsModule,
     NgxMatTimepickerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatPaginatorModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

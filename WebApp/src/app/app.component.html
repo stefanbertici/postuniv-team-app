@@ -6,7 +6,7 @@
 <div class="temporar" *ngIf="identityService.isLoggedIn$ | async">
     <i class="material-icons" [matMenuTriggerFor]="menu" *ngIf="identityService.isLoggedIn$ | async">create_new_folder</i>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="openSaveReservationComponent()">Reservation</button>
+  <button mat-menu-item *ngIf="identityService.isLoggedIn$ | async" (click)="openSaveReservationComponent()">Reservation</button>
   <button mat-menu-item (click)="openSaveCategoryComponent()">Category</button>
   <button mat-menu-item (click)="openSaveServiceComponent()">Service</button>
 </mat-menu>
