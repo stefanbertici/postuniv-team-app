@@ -36,11 +36,22 @@ public class RepositoryChecker {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("There is no user with id = '" + id + "'"));
 
-        if(!user.getRole().equals(Role.EMPLOYEE)) {
+        if (!user.getRole().equals(Role.EMPLOYEE)) {
             throw new ResourceNotFoundException("The user with id = '" + id + "' is not an employee");
         }
 
         return user;
+    }
+
+    public boolean checkIfUserIsCustomer(Integer id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("There is no user with id = '" + id + "'"));
+
+        if (!user.getRole().equals(Role.CUSTOMER)) {
+            throw new ResourceNotFoundException("The user with id = '" + id + "' is not a customer");
+        }
+
+        return true;
     }
 
     public void checkIfEmailAlreadyRegistered(String email) {

@@ -21,7 +21,9 @@ import ro.ubb.SaloonApp.utils.RepositoryChecker;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static ro.ubb.SaloonApp.constant.Status.*;
 
@@ -162,5 +164,15 @@ public class ReservationService {
         reservation.setStatus(CANCELLED);
 
         return "Reservation cancelled successfully";
+    }
+
+    public List<ReservationViewDto> getUserReservations(Integer userId) {
+        repositoryChecker.checkIfUserIsCustomer(userId);
+
+        List<Reservation> allReservations = reservationRepository.findAll();
+        List<Reservation> usersReservations = allReservations.stream()
+                .filter(u -> Objects.equals(u.getUser().getId(), userId)).toList();
+
+        return ReservationMapper.INSTANCE.toReservationViewDtos(usersReservations.stream().toList());
     }
 }

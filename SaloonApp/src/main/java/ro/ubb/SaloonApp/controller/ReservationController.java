@@ -71,4 +71,11 @@ public class ReservationController {
         String response = reservationService.cancel(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/customer/{userId}")
+    ResponseEntity<List<ReservationViewDto>> getUserReservations(@PathVariable Integer userId) {
+        List<ReservationViewDto> userReservations = reservationService.getUserReservations(userId);
+
+        return new ResponseEntity<>(userReservations, HttpStatus.OK);
+    }
 }
