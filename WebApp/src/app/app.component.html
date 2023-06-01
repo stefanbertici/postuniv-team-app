@@ -1,7 +1,7 @@
 <!--Temporary buttons| the buttons will be moved in the nav header or other relevant Components
     for the moment just for dev/test purpose
 -->
-<p *ngIf="identityService.isLoggedIn$ | async">Logged user: {{identityService.loggedUser.sub}}</p>
+<!-- <p *ngIf="identityService.isLoggedIn$ | async">Logged user: {{identityService.loggedUser.sub}}</p>
 
 <div class="temporar" *ngIf="identityService.isLoggedIn$ | async">
     <i class="material-icons" [matMenuTriggerFor]="menu" *ngIf="identityService.isLoggedIn$ | async">create_new_folder</i>
@@ -15,10 +15,14 @@
 <a routerLink="/users"><i class="material-icons">people</i></a>
 <a routerLink="/reservations"><i class="material-icons">schedule</i></a>
 <i class="material-icons logout" (click)="logout()">logout</i>
-</div>
+</div> -->
 <!-- <app-beauty-list *ngIf="identityService.isLoggedIn$ | async"></app-beauty-list>
 <app-category-list *ngIf="identityService.isLoggedIn$ | async"></app-category-list>
 <app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>
 <app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list> -->
-<app-login *ngIf="!(identityService.isLoggedIn$ | async) && !(router.url === '/register')"></app-login>
-<router-outlet></router-outlet>
+<!-- <app-login *ngIf="!(identityService.isLoggedIn$ | async) && !(router.url === '/register')"></app-login>
+<router-outlet></router-outlet> -->
+
+<app-header></app-header>
+<app-homepage></app-homepage>
+<app-footer></app-footer>

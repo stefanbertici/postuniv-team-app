@@ -35,6 +35,10 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { ReservationStatusComponent } from './pages/reservation/reservation-status/reservation-status.component';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { HeaderComponent } from './pages/header/header.component';
+import { FooterComponent } from './pages/footer/footer.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -53,7 +57,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     CategoryListComponent,
     CategoryDetailsComponent,
     BeautyDetailsComponent,
-    ReservationStatusComponent
+    ReservationStatusComponent,
+    HomepageComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +83,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     FormsModule,
     NgxMatTimepickerModule,
     MatMenuModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+
+    FlexLayoutModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

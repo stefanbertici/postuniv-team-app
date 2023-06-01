@@ -1,0 +1,123 @@
+.wf-section {
+    -webkit-text-size-adjust: 100%;
+    font-size: 1vw;
+    line-height: 1.6vw;
+    font-weight: 300;
+    box-sizing: border-box;
+    background-color: rgb(238, 169, 169);
+    color: white;
+  }
+  
+  
+  
+  .float-container {
+      padding: 20px;
+  }
+  
+  .float-child-right{
+      width: 50%;
+      padding: 20px;
+      float: right;
+  }
+  
+  .float-child-left{
+      width: 50%;
+      padding: 20px;
+      float: left;
+  }
+  
+  #informations-float-child-left{
+      text-align: right;
+  }
+  
+  #emailBarFooter{
+      text-align: center;
+  }
+  #lastTextFooter{
+      text-align: center;
+      border-top: 1px solid #000000;
+      margin-right: 20%;
+      margin-left: 20%;
+      margin-top: 2%;
+      font-style: italic;
+  }
+  
+  
+  /* Style all font awesome icons */
+  .fa {
+      padding: 20px;
+      font-size: 30px;
+      width: 50px;
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    /* Add a hover effect if you want */
+    .fa:hover {
+      opacity: 0.7;
+    }
+    
+    /* Set a specific color for each brand */
+    
+    /* Facebook */
+    .fa-facebook {
+      -webkit-text-size-adjust: 100%;
+      box-sizing: inherit;
+      transform: translate(0, 0);
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      text-align: center;
+      padding: 20px;
+      font-size: 30px;
+      width: 70px;
+      border-radius: 50%;
+      text-decoration: none;
+      margin: 5px 2px;
+      background: #3B5998;
+      color: white;
+    }
+    
+    /* Twitter */
+    .fa-twitter {
+      -webkit-text-size-adjust: 100%;
+      box-sizing: inherit;
+      transform: translate(0, 0);
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      text-align: center;
+      padding: 20px;
+      font-size: 30px;
+      width: 70px;
+      border-radius: 50%;
+      text-decoration: none;
+      margin: 5px 2px;
+      background: #6c91e3;
+      color: white;
+    }
+  
+    .fa-youtube {
+      -webkit-text-size-adjust: 100%;
+      box-sizing: inherit;
+      transform: translate(0, 0);
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      text-align: center;
+      padding: 20px;
+      font-size: 30px;
+      width: 70px;
+      border-radius: 50%;
+      text-decoration: none;
+      margin: 5px 2px;
+      background: #ac240c;
+      color: white;
+    }
+  
+    .footertext{
+      color: rgb(34, 21, 151);
+    }
