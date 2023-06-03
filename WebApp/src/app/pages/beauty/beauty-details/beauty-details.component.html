@@ -24,5 +24,10 @@
         <br>
     </form>
 </div>
-<button mat-button color="primary" (click)="updateBeautyService(name.value, numOfAvailabilityBlocks.valueAsNumber, price.valueAsNumber, category.value)"><i class="material-icons">save</i>
-</button>
+<div class="control_container">
+    <button mat-raised-button color="primary"
+        (click)="updateBeautyService(name.value, numOfAvailabilityBlocks.valueAsNumber, price.valueAsNumber, category.value)"><i
+            class="material-icons">save</i>
+    </button>
+    <button mat-raised-button color="warn" (click)="closeModalComponent()"><i class="material-icons">cancel</i></button>
+</div>

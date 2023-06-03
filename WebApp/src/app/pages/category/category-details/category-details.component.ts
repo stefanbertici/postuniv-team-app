@@ -23,4 +23,8 @@ export class CategoryDetailsComponent {
     location.reload();
   }
 
+  closeModalComponent() {
+    this.matDialogRef.close();
+  }
+
 }

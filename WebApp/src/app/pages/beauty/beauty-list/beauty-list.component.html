@@ -3,25 +3,25 @@
     <h3>s e r v i c e s</h3>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="beautyServices">
-        <!-- Resrevation_customer -->
+        <!-- Service_category -->
         <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef> Service </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Service category-->
+        <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Categorie </th>
           <td mat-cell *matCellDef="let element"> {{element.categoryName}} </td>
         </ng-container>
 
-        <!-- Employee_email -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Nume </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-        <!-- Employee_name service -->
+        <!-- Service duration -->
         <ng-container matColumnDef="duration">
           <th mat-header-cell *matHeaderCellDef> Duration/Minutes </th>
           <td mat-cell *matCellDef="let element"> {{element.durationInMinutes}} </td>
         </ng-container>
 
-        <!-- Orice Column -->
+        <!-- Price column -->
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef> Price </th>
           <td mat-cell *matCellDef="let element"> {{element.price}} </td>

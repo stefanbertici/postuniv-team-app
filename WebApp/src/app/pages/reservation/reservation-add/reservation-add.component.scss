@@ -28,3 +28,13 @@ h3 {
   flex-direction: column;
   justify-content: center;
 }
+
+.control_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+button {
+  margin: 0 10px;
+}

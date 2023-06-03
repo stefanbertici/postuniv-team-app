@@ -39,9 +39,12 @@
         </mat-form-field>
         <br>
     </form>
-    <button mat-button color="primary" (click)="saveReservationCustomerById(service.value, customerId.valueAsNumber, employee.value, 
-date.value, ora.value+':00')"><i class="material-icons">save</i>
-</button>
+    <div class="control_container">
+        <button mat-raised-button color="primary" (click)="saveReservationCustomerById(service.value, customerId.valueAsNumber, employee.value, 
+date.value, ora.value+':00')"><i class="material-icons">save</i></button>
+        <button mat-raised-button color="warn" (click)="closeModalComponent()"><i
+                class="material-icons">cancel</i></button>
+    </div>
 </div>
 <!----------------------------------------------CUSTOMER----------------------------------------------------------->
 <div class="form-container" *ngIf="hasRole.role=='CUSTOMER'">
@@ -79,9 +82,11 @@ date.value, ora.value+':00')"><i class="material-icons">save</i>
         </mat-form-field>
         <br>
     </form>
-    <button mat-button color="primary" (click)="saveReservation(service.value, employee.value, 
+    <div class="control_container">
+        <button mat-raised-button color="primary" (click)="saveReservation(service.value, employee.value, 
 date.value, ora.value+':00')"><i class="material-icons">save</i>
-</button>
+        </button>
+        <button mat-raised-button color="warn" (click)="closeModalComponent()"><i
+                class="material-icons">cancel</i></button>
+    </div>
 </div>
-
-

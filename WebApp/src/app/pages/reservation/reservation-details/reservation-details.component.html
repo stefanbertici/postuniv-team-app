@@ -33,7 +33,9 @@
         </mat-form-field>
     </form>
 </div>
-<button mat-button color="primary" 
-(click)="updateReservation(selectedReservation.id, customer.value, email.value,
+<div class="control_container">
+    <button mat-raised-button color="primary" (click)="updateReservation(selectedReservation.id, customer.value, email.value,
 employee.value, status.value, data.value, ora.value)"><i class="material-icons">save</i>
-</button>
+    </button>
+    <button mat-raised-button color="warn" (click)="closeModalComponent()"><i class="material-icons">cancel</i></button>
+</div>

@@ -12,7 +12,7 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./beauty-list.component.scss']
 })
 export class BeautyListComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['category', 'name', 'duration', 'price', 'actions'];
+  displayedColumns: string[] = ['name','category', 'duration', 'price', 'actions'];
   beautyServices = new MatTableDataSource<Beauty>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

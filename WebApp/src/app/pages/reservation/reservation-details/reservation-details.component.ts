@@ -34,4 +34,8 @@ export class ReservationDetailsComponent {
     location.reload();
   }
 
+  closeModalComponent(){
+    this.matDialogRef.close();
+  }
+
 }

@@ -66,4 +66,8 @@ export class ReservationAddComponent implements OnInit {
         this.employeeList = x.filter((y: User) => y.role == 'EMPLOYEE');
       });
   }
+
+  closeModalComponent(){
+    this.matDialog.close();
+  }
 }

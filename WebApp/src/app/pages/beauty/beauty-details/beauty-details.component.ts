@@ -21,5 +21,9 @@ export class BeautyDetailsComponent {
       .subscribe(_x => console.log("Item updated"));
       location.reload();
   }
+  
+  closeModalComponent(){
+    this.matDialogRef.close();
+  }
 
 }

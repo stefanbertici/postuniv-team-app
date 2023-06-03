@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Reservation } from 'src/app/model/reservation';
 import { Status } from 'src/app/model/status';
 import { ReservationService } from 'src/app/service/reservation.service';
@@ -19,7 +19,7 @@ export class ReservationStatusComponent {
   ];
 
   constructor(private reservationService: ReservationService,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private matDialogRef: MatDialogRef<ReservationStatusComponent>) { }
 
   reservationStatus(status: number) {
     if (status == 1) {
@@ -35,6 +35,10 @@ export class ReservationStatusComponent {
         .subscribe(_ => console.log("Complete ok!"));
     }
     location.reload();
+  }
+
+  closeModalComponent(){
+    this.matDialogRef.close();
   }
 
 }

@@ -54,7 +54,7 @@ export class ReservationListComponent implements OnInit, AfterViewInit {
   openUpdateComponent(reservation: Reservation) {
     this.matDialog.open(ReservationDetailsComponent, {
       data: reservation,
-      height: '450px',
+      height: '460px',
       width: '300px',
     });
   }

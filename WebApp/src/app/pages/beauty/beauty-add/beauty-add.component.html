@@ -17,12 +17,21 @@
         </mat-form-field>
         <br>
         <!-- Temporary field: Here we will have a drop box select list-->
+
         <mat-form-field>
             <mat-label>Category</mat-label>
-            <input matInput #category>
+            <mat-select #category>
+                <mat-option *ngFor="let category of availableCategories" [value]="category.name">
+                    {{category.name}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <br>
     </form>
 </div>
-<button mat-button color="primary" (click)="saveBeautyService(name.value, numOfAvailabilityBlocks.valueAsNumber, price.valueAsNumber, category.value)"><i class="material-icons">save</i>
-</button>
+<div class="control_container">
+    <button mat-raised-button color="primary"
+        (click)="saveBeautyService(name.value, numOfAvailabilityBlocks.valueAsNumber, price.valueAsNumber, category.value)"><i
+            class="material-icons">save</i>
+    </button><button mat-raised-button color="warn" (click)="closeModalComponent()"><i class="material-icons">cancel</i></button>
+</div>

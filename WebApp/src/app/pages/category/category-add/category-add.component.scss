@@ -1,15 +1,23 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  mat-form-field{
-    margin-bottom: -1.25em;
-  }
+mat-form-field {
+  margin-bottom: -1.25em;
+}
 
-  h3{
-    padding-top: 10px;
-    font-weight: bold;
-    color: #3f51b5;
-  }
+h3 {
+  padding-top: 10px;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.control_container {
+  margin-top: 10px;
+}
+
+button {
+  margin: 0 10px;
+}
