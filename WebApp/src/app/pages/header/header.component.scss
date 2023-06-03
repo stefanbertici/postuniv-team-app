@@ -11,21 +11,21 @@
     box-shadow: 0px 2px 5px rgb(59, 48, 71);
 }
 
-p{
+p {
     color: white;
 }
 
 i {
-    color: rgb(64, 96, 105);
+    color: rgb(83, 126, 139);
     border-radius: 50px;
     margin: 5px;
-    background-color:  rgb(226, 226, 226);
+    background-color: rgb(226, 226, 226);
     padding: 1px;
     font-size: 35px;
     cursor: pointer;
 }
 
-i:hover{
+i:hover {
     border-radius: 50px;
     margin: 5px;
     background-color: rgb(247, 247, 247);
@@ -33,9 +33,11 @@ i:hover{
     font-size: 35px;
     cursor: pointer;
 }
-a:active{
+
+a:active {
     color: rgb(84, 85, 82);
 }
+
 .auth-control {
     display: flex;
     justify-content: flex-end;
@@ -43,7 +45,11 @@ a:active{
     width: 100%;
     margin-right: 20px;
 }
+
 // .auth-control button {
 //     margin-left: auto;
 // }
 
+button p {
+    color: rgb(131, 11, 11);
+}
