@@ -1,27 +1,12 @@
-<!--Temporary buttons| the buttons will be moved in the nav header or other relevant Components
-    for the moment just for dev/test purpose
--->
-<p *ngIf="identityService.isLoggedIn$ | async">Logged user: {{identityService.loggedUser.sub}}</p>
+<app-header></app-header>
+<!-- <p *ngIf="identityService.isLoggedIn$ | async">Logged user: {{identityService.loggedUser.sub}}</p> -->
 
-<div class="temporar" *ngIf="identityService.isLoggedIn$ | async">
-    <i class="material-icons" [matMenuTriggerFor]="menu" *ngIf="identityService.isLoggedIn$ | async">create_new_folder</i>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="openSaveReservationComponent()">Reservation</button>
-  <button mat-menu-item (click)="openSaveCategoryComponent()" *ngIf="identityService.loggedUser.role=='ADMIN'">Category</button>
-  <button mat-menu-item (click)="openSaveServiceComponent()" *ngIf="identityService.loggedUser.role=='ADMIN'">Service</button>
-</mat-menu>
-<!--TEMPO-->
-<div *ngIf="identityService.loggedUser.role=='ADMIN'">
-  <a routerLink="/categories" ><i class="material-icons">category</i></a>
-  <a routerLink="/services"><i class="material-icons">design_services</i></a>
-  <a routerLink="/users"><i class="material-icons">people</i></a>
-</div>
-<a routerLink="/reservations"><i class="material-icons">schedule</i></a>
-<i class="material-icons logout" (click)="logout()">logout</i>
-</div>
+
+<app-menu></app-menu>
+
 <!-- <app-beauty-list *ngIf="identityService.isLoggedIn$ | async"></app-beauty-list>
 <app-category-list *ngIf="identityService.isLoggedIn$ | async"></app-category-list>
 <app-reservation-list *ngIf="identityService.isLoggedIn$ | async"></app-reservation-list>
 <app-user-list *ngIf="identityService.isLoggedIn$ | async"></app-user-list> -->
-<app-login *ngIf="!(identityService.isLoggedIn$ | async) && !(router.url === '/register')"></app-login>
+<!-- <app-login *ngIf="!(identityService.isLoggedIn$ | async) && !(router.url === '/register')"></app-login> -->
 <router-outlet></router-outlet>

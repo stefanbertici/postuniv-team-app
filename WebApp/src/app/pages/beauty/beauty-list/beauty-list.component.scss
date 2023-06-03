@@ -11,20 +11,13 @@ table th {
 .user-table {
     width: 80%;
 }
-h3{
+
+h3 {
+    display: flex;
+    justify-content: center;
     font-weight: bold;
 }
 
-//Temporary piece of code: basic style for logout button: To be removed;
-p {
-    padding: 0px;
-    border: 0px;
-    margin: 0px;
-    cursor: pointer;
-    color:  #3f51b5;
-    float: right;
-}
-
-i{
+i {
     cursor: pointer;
 }

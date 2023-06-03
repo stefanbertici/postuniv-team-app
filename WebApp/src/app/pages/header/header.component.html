@@ -1,0 +1,13 @@
+<div class="header">
+    <p *ngIf="identityService.isLoggedIn$ | async">
+        {{identityService.loggedUser.sub}}</p>
+    <div class="auth-control">
+        <i class="material-icons" [matMenuTriggerFor]="menu">account_circle</i>
+        <mat-menu #menu="matMenu">
+            <button routerLink="/login" mat-menu-item *ngIf="!(identityService.isLoggedIn$ | async)">Login</button>
+            <button mat-menu-item *ngIf="identityService.isLoggedIn$ | async">Account</button>
+            <button mat-menu-item *ngIf="identityService.isLoggedIn$ | async" (click)="logout()">Logout</button>
+            <button routerLink="/register" mat-menu-item *ngIf="!(identityService.isLoggedIn$ | async)">Register</button>
+        </mat-menu>
+    </div>
+</div>
