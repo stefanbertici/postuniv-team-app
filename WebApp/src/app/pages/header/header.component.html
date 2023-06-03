@@ -1,4 +1,7 @@
 <div class="header">
+    <div class="logo_placeholder">
+        <img src="assets/logo2.png" alt="">
+    </div>
     <div class="auth-control">
         <span *ngIf="identityService.isLoggedIn$ | async">
             {{identityService.loggedUser.sub}}</span>
@@ -6,8 +9,11 @@
         <mat-menu #menu="matMenu">
             <button routerLink="/login" mat-menu-item *ngIf="!(identityService.isLoggedIn$ | async)">Login</button>
             <button mat-menu-item *ngIf="identityService.isLoggedIn$ | async">History</button>
-            <button class="warn_exit" mat-menu-item *ngIf="identityService.isLoggedIn$ | async" (click)="logout()"><p>Logout</p></button>
-            <button routerLink="/register" mat-menu-item *ngIf="!(identityService.isLoggedIn$ | async)">Register</button>
+            <button class="warn_exit" mat-menu-item *ngIf="identityService.isLoggedIn$ | async" (click)="logout()">
+                <p>Logout</p>
+            </button>
+            <button routerLink="/register" mat-menu-item
+                *ngIf="!(identityService.isLoggedIn$ | async)">Register</button>
         </mat-menu>
     </div>
 </div>

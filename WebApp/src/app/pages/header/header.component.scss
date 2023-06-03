@@ -12,8 +12,8 @@
 }
 
 span {
-    font-style: italic;
     font-size: 12px;
+    font-style: italic;
     color: rgb(233, 233, 233);
 }
 
@@ -51,8 +51,17 @@ a:active {
 button p {
     color: rgb(131, 11, 11);
 }
+.logo_placeholder{
+    display: flex;
+    align-items: center;
+}
+
+.logo_placeholder img{
+    margin-left: 10px;
+    width: 50px;
+    height: auto;
+}
 
 // .auth-control button {
 //     margin-left: auto;
 // }
-
