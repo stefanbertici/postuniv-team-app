@@ -1,5 +1,28 @@
-.temporar{
+.temporar {
     display: flex;
     justify-content: center;
 }
+
 //TEMPORARY ABOVE CODE
+i {
+    border-radius: 50px;
+    margin: 5px;
+    background-color: rgb(235, 233, 233);
+    padding: 15px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+i:hover{
+    border-radius: 50px;
+    margin: 5px;
+    background-color: rgb(170, 206, 223);
+    padding: 15px;
+    font-size: 40px;
+    cursor: pointer;
+}
+a:active{
+    color: rgb(84, 85, 82);
+}
+//TEMPORARY BELOW CODE
+

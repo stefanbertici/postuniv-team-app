@@ -7,12 +7,15 @@
     <i class="material-icons" [matMenuTriggerFor]="menu" *ngIf="identityService.isLoggedIn$ | async">create_new_folder</i>
 <mat-menu #menu="matMenu">
   <button mat-menu-item (click)="openSaveReservationComponent()">Reservation</button>
-  <button mat-menu-item (click)="openSaveCategoryComponent()">Category</button>
-  <button mat-menu-item (click)="openSaveServiceComponent()">Service</button>
+  <button mat-menu-item (click)="openSaveCategoryComponent()" *ngIf="identityService.loggedUser.role=='ADMIN'">Category</button>
+  <button mat-menu-item (click)="openSaveServiceComponent()" *ngIf="identityService.loggedUser.role=='ADMIN'">Service</button>
 </mat-menu>
-<a routerLink="/categories"><i class="material-icons">category</i></a>
-<a routerLink="/services"><i class="material-icons">design_services</i></a>
-<a routerLink="/users"><i class="material-icons">people</i></a>
+<!--TEMPO-->
+<div *ngIf="identityService.loggedUser.role=='ADMIN'">
+  <a routerLink="/categories" ><i class="material-icons">category</i></a>
+  <a routerLink="/services"><i class="material-icons">design_services</i></a>
+  <a routerLink="/users"><i class="material-icons">people</i></a>
+</div>
 <a routerLink="/reservations"><i class="material-icons">schedule</i></a>
 <i class="material-icons logout" (click)="logout()">logout</i>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IdentityService } from './service/identity.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,12 +6,13 @@ import { ReservationAddComponent } from './pages/reservation/reservation-add/res
 import { CategoryAddComponent } from './pages/category/category-add/category-add.component';
 import { BeautyAddComponent } from './pages/beauty/beauty-add/beauty-add.component';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent{
   title = 'Saloon';
 
   constructor(public identityService: IdentityService, public router: Router, private matDialog: MatDialog) { }
