@@ -11,8 +11,10 @@
     box-shadow: 0px 2px 5px rgb(59, 48, 71);
 }
 
-p {
-    color: white;
+span {
+    font-style: italic;
+    font-size: 12px;
+    color: rgb(233, 233, 233);
 }
 
 i {
@@ -46,10 +48,11 @@ a:active {
     margin-right: 20px;
 }
 
+button p {
+    color: rgb(131, 11, 11);
+}
+
 // .auth-control button {
 //     margin-left: auto;
 // }
 
-button p {
-    color: rgb(131, 11, 11);
-}
