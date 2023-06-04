@@ -1,4 +1,4 @@
-<div id="homesection" class="hero is-primary"  *ngIf="!identityService.isLoggedIn$">
+<div id="homesection" class="hero is-primary"  *ngIf="!(identityService.isLoggedIn$ | async)">
   <div class="hero-body">
     <div class="container">
       <section id="colajHome01">
