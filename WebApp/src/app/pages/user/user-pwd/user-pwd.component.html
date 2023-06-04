@@ -1,0 +1,15 @@
+<h3>new Password</h3>
+<div class="form-container">
+    <form class="change_pwd">
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput #pwd>
+        </mat-form-field>
+        <br>
+    </form>
+</div>
+<div class="control_container">
+    <button mat-raised-button color="primary" (click)="changePwd(pwd.value)"><i class="material-icons">save</i>
+    </button>
+    <button mat-raised-button color="warn" (click)="closeModalComponent()"><i class="material-icons">cancel</i></button>
+</div>

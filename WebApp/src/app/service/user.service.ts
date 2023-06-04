@@ -16,4 +16,16 @@ export class UserService {
       .get<User[]>(this.userApiLink);
   }
 
+  getAllAvailableSpots(employeeId: number, reservationDate: string): Observable<string[]> {
+    const availableSpotsApiLink = `${this.userApiLink}/${employeeId}/availability/${reservationDate}`;
+
+    return this.httpClient
+      .get<string[]>(availableSpotsApiLink);
+  }
+
+  updatePwd(userId: any, pwd: string): Observable<string> {
+    const changePwdApiUrl = `${this.userApiLink}/${userId}/change-password`;
+    return this.httpClient.put<string>(changePwdApiUrl, pwd);
+  }
+
 }
