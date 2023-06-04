@@ -67,7 +67,9 @@ export class ReservationAddComponent implements OnInit {
       });
   }
 
-  closeModalComponent(){
+  closeModalComponent() {
     this.matDialog.close();
   }
+
+
 }

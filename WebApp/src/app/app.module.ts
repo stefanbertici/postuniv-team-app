@@ -34,9 +34,10 @@ import { DatePipe } from '@angular/common';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { ReservationStatusComponent } from './pages/reservation/reservation-status/reservation-status.component';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { HeaderComponent } from './pages/header/header.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { UserPwdComponent } from './pages/user/user-pwd/user-pwd.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { MenuComponent } from './pages/menu/menu.component';
     BeautyDetailsComponent,
     ReservationStatusComponent,
     HeaderComponent,
-    MenuComponent
+    MenuComponent,
+    UserPwdComponent
   ],
   imports: [
     BrowserModule,
