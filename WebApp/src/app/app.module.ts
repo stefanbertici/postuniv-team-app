@@ -38,6 +38,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HeaderComponent } from './pages/header/header.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { UserPwdComponent } from './pages/user/user-pwd/user-pwd.component';
+import { HomeComponent } from './pages/home/home.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { UserPwdComponent } from './pages/user/user-pwd/user-pwd.component';
     ReservationStatusComponent,
     HeaderComponent,
     MenuComponent,
-    UserPwdComponent
+    UserPwdComponent,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

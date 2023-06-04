@@ -1,0 +1,189 @@
+#homesection {
+  background-color: rgb(2, 0, 0);
+  width: 100%;
+}
+
+.text {
+  color: rgb(255, 255, 255);
+}
+
+*,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background: hsl(210 30% 24%);
+}
+
+h1 {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: normal;
+  font-size: clamp(3rem, 15vmin, 8rem);
+  font-family: sans-serif;
+  color: hsl(0 0% 98%);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  height: 100px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.underlined {
+  /*   background: red; */
+  position: relative;
+}
+
+.underline-mask:after {
+  content: "";
+  position: absolute;
+  top: 95%;
+  width: 150%;
+  aspect-ratio: 3 / 1;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+  border: 6px solid hsl(280 80% 50%);
+  /* Use a conic gradient mask to hide and show the bits you want */
+  --spread: 140deg;
+  --start: 290deg;
+  mask: conic-gradient(
+    from var(--start),
+    white 0 var(--spread),
+    transparent var(--spread)
+  );
+}
+
+.underline-overflow {
+  display: inline-block;
+  /* A little extra padding and overflow hidden   */
+  overflow: hidden;
+  padding-bottom: clamp(1rem, 2vmin, 2rem);
+}
+.underline-overflow:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  height: 150%;
+  aspect-ratio: 2.5 / 1;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  border-radius: 50%;
+  border: 6px solid hsl(10 80% 50%);
+}
+
+.underline-clip:after {
+  content: "";
+  position: absolute;
+  top: 95%;
+  width: 150%;
+  aspect-ratio: 3 / 1;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+  border: 6px solid hsl(130 80% 50%);
+  /* Use a clip-path to hide and show the bits you want */
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+}
+
+.floatContainer {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.floatChildRight {
+  width: 50%;
+  padding: 20px;
+  position: relative;
+}
+
+.floatChildLeft {
+  width: 50%;
+  padding: 20px;
+  position: relative;
+}
+
+.itemDescSide {
+  text-align: center;
+  margin-top: 90%;
+}
+
+#ManichiuraSectionHome01 {
+  margin-top: 5%;
+  height: 20%;
+  margin-bottom: 5%;
+}
+
+#PedichiuraSectionHome02 {
+  margin-top: 5%;
+  height: 20%;
+  margin-bottom: 5%;
+}
+
+#SpaSectionHome03 {
+  margin-top: 5%;
+  height: 20%;
+  margin-bottom: 5%;
+}
+
+#PetrecereTematicaSectionHome04 {
+  margin-top: 5%;
+  height: 20%;
+}
+
+.button {
+  background-color: rgb(238, 169, 169);
+}
+
+.imageSize {
+  border-radius: 25px;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 99%;
+}
+
+.imagePrez {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 99%;
+}
+
+
+
+
+
+.styled {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgb(82, 54, 151);
+    background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.styled:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+.styled:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
