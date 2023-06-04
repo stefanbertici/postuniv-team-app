@@ -37,6 +37,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { HeaderComponent } from './pages/header/header.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { HomeComponent } from './pages/home/home.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { MenuComponent } from './pages/menu/menu.component';
     BeautyDetailsComponent,
     ReservationStatusComponent,
     HeaderComponent,
-    MenuComponent
+    MenuComponent,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
