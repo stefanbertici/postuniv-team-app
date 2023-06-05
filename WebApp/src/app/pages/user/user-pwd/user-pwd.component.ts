@@ -16,7 +16,6 @@ export class UserPwdComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   changePwd(newPwd: string) {
-    console.log(newPwd);
     this.userService.updatePwd(this.selectedUser.id, newPwd)
       .subscribe(_ => console.log("Pwd updated!"));
   }

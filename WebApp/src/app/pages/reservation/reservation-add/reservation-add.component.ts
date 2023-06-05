@@ -19,6 +19,7 @@ export class ReservationAddComponent implements OnInit {
   employeeList: User[] = [];
   currentDate: Date = new Date();
   hasRole: UserLogged = Object.create(null);
+  availableSpots: string[] = [];
 
   constructor(private reservationService: ReservationService,
     private matDialog: MatDialogRef<ReservationAddComponent>,
@@ -52,6 +53,7 @@ export class ReservationAddComponent implements OnInit {
 
     this.reservationService.save(reservationToBeSaved)
       .subscribe(_ => console.log("Reservation saved!"));
+    console.log(reservationToBeSaved);
     location.reload();
   }
 
@@ -65,6 +67,17 @@ export class ReservationAddComponent implements OnInit {
       .subscribe((x: User[]) => {
         this.employeeList = x.filter((y: User) => y.role == 'EMPLOYEE');
       });
+  }
+
+  fetchAvailableSpots(employeeId: number, reservationDate: string) {
+    if (employeeId != null && reservationDate != null) {
+      let formattedDateFromEvent: string = new Date(reservationDate)
+        .toLocaleDateString('fr-CA')
+        .toString();
+
+      this.useService.getAllAvailableSpots(employeeId, formattedDateFromEvent)
+        .subscribe(x => this.availableSpots = x);
+    }
   }
 
   closeModalComponent() {
