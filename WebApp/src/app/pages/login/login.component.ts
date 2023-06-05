@@ -29,10 +29,6 @@ export class LoginComponent {
   login() {
     if (this.formGroup.valid) {
       const login = this.identityService.login(this.formGroup);
-
-      if(this.router.url === '/login'){                           ///TODO: Nu stiu daca o sa ramana asa;
-        this.formGroup.setErrors({ unauthenticated: true });
-      }
     }
   }
 

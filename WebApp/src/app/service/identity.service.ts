@@ -31,12 +31,18 @@ export class IdentityService {
     }
 
     this.authApiService.getAuthorized(userForLogin)
-      .subscribe(result => {
-        localStorage.setItem('saloon auth', result.token);
-        this.loggedUser = this.getLoggedUser(result.token);
-        this._isLoggedIn$.next(true);
-        this.route.navigate(['/reservations']);
-      })
+      .subscribe({
+        next: result => {
+          localStorage.setItem('saloon auth', result.token);
+          this.loggedUser = this.getLoggedUser(result.token);
+          this._isLoggedIn$.next(true);
+          this.route.navigate(['/reservations']);
+        },
+        error: () => {
+          alert("Bad credentials!");
+          location.reload();
+        }
+      });
   }
 
   register(formGroup: FormGroup) {
