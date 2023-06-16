@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IdentityService } from './service/identity.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,7 +12,7 @@ import { BeautyAddComponent } from './pages/beauty/beauty-add/beauty-add.compone
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent{
+export class AppComponent {
   title = 'Saloon';
 
   constructor(public identityService: IdentityService, public router: Router, private matDialog: MatDialog) { }

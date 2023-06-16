@@ -34,7 +34,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
   openUpdateComponent(pwd: string) {
     this.matDialog.open(UserPwdComponent, {
       data: pwd,
-      height: '170px',
+      height: '250px',
       width: '300px'
     });
   }
