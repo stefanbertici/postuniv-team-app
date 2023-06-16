@@ -1,15 +1,25 @@
 <h3>new Password</h3>
 <div class="form-container">
-    <form class="change_pwd">
-        <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input type="password" matInput #pwd>
+    <form class="change_pwd" [formGroup]="formGroup" (ngSubmit)="changePwd()">
+        <mat-form-field class="pwd">
+            <mat-label>New Password: </mat-label>
+            <input matInput type="password" formControlName="pwd">
         </mat-form-field>
         <br>
+        <mat-form-field class="pwdConfirm">
+            <mat-label>Confirm Password: </mat-label>
+            <input matInput type="password" formControlName="pwdConfirm">
+        </mat-form-field>
+        <br>
+        <p
+            *ngIf="formGroup.hasError('passwordMismatch') && (formGroup.controls['pwdConfirm'].dirty || formGroup.controls['pwdConfirm'].touched)">
+            Passwords do not match.
+        </p>
+        <div class="control_container">
+            <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid"><i
+                    class="material-icons">save</i></button>
+            <button mat-raised-button color="warn" type="button" (click)="closeModalComponent()"><i
+                    class="material-icons">cancel</i></button>
+        </div>
     </form>
-</div>
-<div class="control_container">
-    <button mat-raised-button color="primary" (click)="changePwd(pwd.value)"><i class="material-icons">save</i>
-    </button>
-    <button mat-raised-button color="warn" (click)="closeModalComponent()"><i class="material-icons">cancel</i></button>
 </div>
