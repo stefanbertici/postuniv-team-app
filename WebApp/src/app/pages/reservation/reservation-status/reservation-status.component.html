@@ -1,5 +1,5 @@
 <h3>reservation Status</h3>
-<div class="form-container">
+<div class="form-container" *ngIf="hasRole.role=='EMPLOYEE'">
     <form class="update_status">
         <mat-form-field>
             <mat-label>Status</mat-label>
@@ -12,7 +12,29 @@
         <br>
     </form>
     <div class="control_container">
-        <button mat-raised-button color="primary" (click)="reservationStatus(status.value)"><i class="material-icons">save</i>
+        <button mat-raised-button color="primary" (click)="reservationStatus(status.value)"><i
+                class="material-icons">save</i>
+        </button>
+        <button mat-raised-button color="warn" (click)="closeModalComponent()">
+            <i class="material-icons">cancel</i></button>
+    </div>
+</div>
+<!-------------------------------------------ADMIN------------------------------------------------------->
+<div class="form-container" *ngIf="hasRole.role=='ADMIN'">
+    <form class="update_status">
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select #status>
+                <mat-option *ngFor="let status of statusesForAdmin" [value]="status.id" [disabled]="status.active">
+                    {{status.status}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+    </form>
+    <div class="control_container">
+        <button mat-raised-button color="primary" (click)="reservationStatus(status.value)"><i
+                class="material-icons">save</i>
         </button>
         <button mat-raised-button color="warn" (click)="closeModalComponent()">
             <i class="material-icons">cancel</i></button>

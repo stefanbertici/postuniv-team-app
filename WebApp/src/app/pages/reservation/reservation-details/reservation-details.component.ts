@@ -13,6 +13,7 @@ import { ReservationService } from 'src/app/service/reservation.service';
 
 export class ReservationDetailsComponent {
   selectedReservation: Reservation = this.data;
+  currentDate: Date = new Date();
 
   constructor(private matDialogRef: MatDialogRef<UserDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private reservationService: ReservationService) { }
@@ -26,8 +27,10 @@ export class ReservationDetailsComponent {
   // }
   //Todo: We miss the beautyServiceId from the GET-JSON.
   updateReservation(id: number, clientName: string, clientEmail: string, employeeName: string,
-    status: string, date: string, hour: string) {
-    let reservationUpdated: Reservation = { id, clientName, clientEmail, employeeName, status, date, hour };
+    status: string, data: string, hour: string) {
+      let formattedDate: string = new Date(data).toLocaleDateString('fr-CA').toString(); //YYYY-MM-DD
+      
+      let reservationUpdated: Reservation = { id, clientName, clientEmail, employeeName, status, date: formattedDate, hour };
 
     this.reservationService.update(reservationUpdated)
       .subscribe(_ => console.log("Reservation updated!"));

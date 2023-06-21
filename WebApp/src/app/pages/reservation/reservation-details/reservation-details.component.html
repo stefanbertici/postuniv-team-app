@@ -22,9 +22,11 @@
             <input disabled="disabled" matInput #status value="{{selectedReservation.status}}">
         </mat-form-field>
         <br>
-        <mat-form-field>
-            <mat-label>Data</mat-label>
-            <input matInput #data value="{{selectedReservation.date}}">
+        <mat-form-field class="date-time-form-field">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" min="{{currentDate | date:'yyyy-MM-dd'}}" #data value="{{selectedReservation.date}}">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <br>
         <mat-form-field>

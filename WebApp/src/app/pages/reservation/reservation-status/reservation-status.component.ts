@@ -2,6 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Reservation } from 'src/app/model/reservation';
 import { Status } from 'src/app/model/status';
+import { User } from 'src/app/model/user';
+import { UserLogged } from 'src/app/model/user-logged';
+import { IdentityService } from 'src/app/service/identity.service';
 import { ReservationService } from 'src/app/service/reservation.service';
 
 @Component({
@@ -11,6 +14,7 @@ import { ReservationService } from 'src/app/service/reservation.service';
 })
 export class ReservationStatusComponent {
   selectedReservation: Reservation = this.data;
+  hasRole: UserLogged = Object.create(null);
 
   statuses: Status[] = [
     { id: 1, status: 'Accept', active: false },
@@ -18,8 +22,15 @@ export class ReservationStatusComponent {
     { id: 3, status: 'Complet', active: false },
   ];
 
+  statusesForAdmin: Status[] = [
+    { id: 2, status: 'Cancel', active: false }
+  ];
+
   constructor(private reservationService: ReservationService,
-    @Inject(MAT_DIALOG_DATA) public data: any, private matDialogRef: MatDialogRef<ReservationStatusComponent>) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private matDialogRef: MatDialogRef<ReservationStatusComponent>,
+    private identityService: IdentityService) {
+    this.hasRole = this.identityService.loggedUser;
+  }
 
   reservationStatus(status: number) {
     if (status == 1) {
@@ -37,7 +48,7 @@ export class ReservationStatusComponent {
     location.reload();
   }
 
-  closeModalComponent(){
+  closeModalComponent() {
     this.matDialogRef.close();
   }
 
