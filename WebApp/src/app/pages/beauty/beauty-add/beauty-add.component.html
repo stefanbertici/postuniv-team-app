@@ -6,12 +6,6 @@
             <input matInput #name>
         </mat-form-field>
         <br>
-        <!-- <mat-form-field>
-            <mat-label>numOfAvailabilityBlocks</mat-label>
-            <input type="number" matInput #numOfAvailabilityBlocks>
-        </mat-form-field>
-        <br> -->
-
         <mat-form-field>
             <mat-label>Duration</mat-label>
             <mat-select #numOfAvailabilityBlocks>
@@ -40,8 +34,8 @@
     </form>
 </div>
 <div class="control_container">
-    <button mat-raised-button color="primary"
+    <button mat-raised-button color="customButtonColor"
         (click)="saveBeautyService(name.value, numOfAvailabilityBlocks.value, price.valueAsNumber, category.value)"><i
             class="material-icons">save</i>
-    </button><button mat-raised-button color="warn" (click)="closeModalComponent()"><i class="material-icons">cancel</i></button>
+    </button><button mat-raised-button color="customCancelButtonColor" (click)="closeModalComponent()"><i class="material-icons">cancel</i></button>
 </div>

@@ -41,9 +41,9 @@
         </mat-form-field>
     </form>
     <div class="control_container">
-        <button mat-raised-button color="primary" (click)="saveReservationCustomerById(service.value, customerId.valueAsNumber, employee.value, 
+        <button mat-raised-button color="customButtonColor" (click)="saveReservationCustomerById(service.value, customerId.valueAsNumber, employee.value, 
 date.value, ora.value)"><i class="material-icons">save</i></button>
-        <button mat-raised-button color="warn" (click)="closeModalComponent()"><i
+        <button mat-raised-button color="customCancelButtonColor" (click)="closeModalComponent()"><i
                 class="material-icons">cancel</i></button>
     </div>
 </div>
@@ -86,10 +86,10 @@ date.value, ora.value)"><i class="material-icons">save</i></button>
         <br>
     </form>
     <div class="control_container">
-        <button mat-raised-button color="primary" (click)="saveReservation(service.value, employee.value, 
+        <button mat-raised-button color="customButtonColor" (click)="saveReservation(service.value, employee.value, 
 date.value, ora.value)"><i class="material-icons">save</i>
         </button>
-        <button mat-raised-button color="warn" (click)="closeModalComponent()"><i
+        <button mat-raised-button color="customCancelButtonColor" (click)="closeModalComponent()"><i
                 class="material-icons">cancel</i></button>
     </div>
 </div>

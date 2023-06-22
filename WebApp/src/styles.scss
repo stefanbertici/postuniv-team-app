@@ -14,6 +14,10 @@ body {
 }
 
 .mat-customButtonColor {
-  color: white;
-  background-color: #57648C;
+  color: rgb(255, 255, 255) !important;
+  background-color: #57648C !important;
+}
+.mat-customCancelButtonColor {
+  color: rgb(255, 255, 255) !important;
+  background-color: #934A5F !important;
 }
