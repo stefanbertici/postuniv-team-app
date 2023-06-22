@@ -20,7 +20,7 @@
     </div>
 </div>
 <!-------------------------------------------ADMIN------------------------------------------------------->
-<div class="form-container" *ngIf="hasRole.role=='ADMIN'">
+<div class="form-container" *ngIf="(hasRole.role=='ADMIN') || (hasRole.role=='CUSTOMER')">
     <form class="update_status">
         <mat-form-field>
             <mat-label>Status</mat-label>
