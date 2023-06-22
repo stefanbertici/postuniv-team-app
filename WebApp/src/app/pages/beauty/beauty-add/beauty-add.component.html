@@ -6,9 +6,19 @@
             <input matInput #name>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <!-- <mat-form-field>
             <mat-label>numOfAvailabilityBlocks</mat-label>
             <input type="number" matInput #numOfAvailabilityBlocks>
+        </mat-form-field>
+        <br> -->
+
+        <mat-form-field>
+            <mat-label>Duration</mat-label>
+            <mat-select #numOfAvailabilityBlocks>
+                <mat-option *ngFor="let timeUnits of timeUnits" [value]="timeUnits.equivalentValue">
+                    {{timeUnits.displayValue}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field>
@@ -31,7 +41,7 @@
 </div>
 <div class="control_container">
     <button mat-raised-button color="primary"
-        (click)="saveBeautyService(name.value, numOfAvailabilityBlocks.valueAsNumber, price.valueAsNumber, category.value)"><i
+        (click)="saveBeautyService(name.value, numOfAvailabilityBlocks.value, price.valueAsNumber, category.value)"><i
             class="material-icons">save</i>
     </button><button mat-raised-button color="warn" (click)="closeModalComponent()"><i class="material-icons">cancel</i></button>
 </div>

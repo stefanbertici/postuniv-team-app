@@ -48,7 +48,7 @@ date.value, ora.value)"><i class="material-icons">save</i></button>
     </div>
 </div>
 <!----------------------------------------------CUSTOMER----------------------------------------------------------->
-<div class="form-container" *ngIf="hasRole.role=='CUSTOMER' || 'EMPLOYEE'">
+<div class="form-container" *ngIf="(hasRole.role=='CUSTOMER') || (hasRole.role=='EMPLOYEE')">
     <form class="add_reservation">
         <mat-form-field>
             <mat-label>Serviciu</mat-label>
