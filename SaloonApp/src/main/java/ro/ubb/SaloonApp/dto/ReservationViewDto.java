@@ -6,11 +6,14 @@ import java.time.LocalTime;
 
 public record ReservationViewDto(
 
-    Integer id,
-    String clientName,
-    String clientEmail,
-    String employeeName,
-    String status,
-    LocalDate date,
-    LocalTime hour){
+        Integer id,
+        String clientName,
+        String clientEmail,
+        String employeeName,
+        Integer employeeId,
+        String beautyServiceName,
+        double beautyServicePrice,
+        String status,
+        LocalDate date,
+        LocalTime hour) {
 }

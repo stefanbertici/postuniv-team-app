@@ -1,12 +1,10 @@
 package ro.ubb.SaloonApp.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ro.ubb.SaloonApp.constant.Status;
 import ro.ubb.SaloonApp.dto.ReservationDto;
 import ro.ubb.SaloonApp.dto.ReservationUpdateDto;
 import ro.ubb.SaloonApp.dto.ReservationViewDto;
@@ -23,7 +21,6 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static ro.ubb.SaloonApp.constant.Status.*;
 
@@ -166,6 +163,7 @@ public class ReservationService {
         return "Reservation cancelled successfully";
     }
 
+    @Transactional
     public List<ReservationViewDto> getUserReservations(Integer userId) {
         repositoryChecker.checkIfUserIsCustomer(userId);
 

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static ro.ubb.SaloonApp.constant.Availability.*;
 
@@ -19,12 +20,18 @@ import static ro.ubb.SaloonApp.constant.Availability.*;
 @Service
 public class AvailabilityService {
 
-    public List<LocalTime> filterAvailabilityBasedOnReservations(List<Reservation> reservations) {
+    public List<LocalTime> filterAvailabilityBasedOnReservations(List<Reservation> reservations, boolean isToday) {
         List<LocalTime> availabilityBlocks = constructTimeBlocks(
                 DEFAULT_START_HOUR.value, DEFAULT_START_MINUTE.value, DEFAULT_AVAILABILITY_BLOCKS.value);
         reservations.forEach(reservation -> availabilityBlocks.removeIf(checkIfTimeIsReserved(reservation)));
 
-        return availabilityBlocks;
+        if (isToday) {
+            return availabilityBlocks.stream()
+                    .filter(a -> a.isAfter(LocalTime.now()))
+                    .collect(Collectors.toList());
+        } else {
+            return availabilityBlocks;
+        }
     }
 
     private List<LocalTime> constructTimeBlocks(int startHour, int startMinute, int numOfAvailabilityBlocks ) {
@@ -41,8 +48,8 @@ public class AvailabilityService {
     }
 
     private Predicate<LocalTime> checkIfTimeIsReserved(Reservation reservation) {
-        return availability -> availability.equals(
-                reservation.getHour()) || (availability.isAfter(reservation.getHour()) &&
+        return availability -> availability.equals(reservation.getHour()) ||
+                (availability.isAfter(reservation.getHour()) &&
                 availability.isBefore(reservation.getHour().plusMinutes(
                         30L * reservation.getBeautyService().getNumOfAvailabilityBlocks())));
     }
@@ -52,7 +59,8 @@ public class AvailabilityService {
 
         List<LocalTime> reservationBlocks = constructTimeBlocks(
                 dto.hour().getHour(), dto.hour().getMinute(), numOfAvailabilityBlocks);
-        List<LocalTime> availabilitiesOfEmployee = filterAvailabilityBasedOnReservations(reservationsOfEmployee);
+        boolean isToday = dto.date().isEqual(LocalDate.now());
+        List<LocalTime> availabilitiesOfEmployee = filterAvailabilityBasedOnReservations(reservationsOfEmployee, isToday);
 
         if(!new HashSet<>(availabilitiesOfEmployee).containsAll(reservationBlocks)) {
             throw new IllegalArgumentException("There is no availability for your selected time");
@@ -68,7 +76,8 @@ public class AvailabilityService {
 
         List<LocalTime> reservationBlocks = constructTimeBlocks(
             dto.hour().getHour(), dto.hour().getMinute(), numOfAvailabilityBlocks);
-        List<LocalTime> availabilitiesOfEmployee = filterAvailabilityBasedOnReservations(reservationsOfEmployee);
+        boolean isToday = dto.date().isEqual(LocalDate.now());
+        List<LocalTime> availabilitiesOfEmployee = filterAvailabilityBasedOnReservations(reservationsOfEmployee, isToday);
 
         boolean isSameDate = originalDate.equals(dto.date());
         if(isSameDate) {

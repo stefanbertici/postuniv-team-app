@@ -70,7 +70,7 @@ public class UserService {
         }
 
         List<Reservation> reservations = reservationRepository.findAllByEmployeeIdAndDateOrderByHourAsc(id, date);
-
-        return availabilityService.filterAvailabilityBasedOnReservations(reservations);
+        boolean isToday = date.isEqual(LocalDate.now());
+        return availabilityService.filterAvailabilityBasedOnReservations(reservations, isToday);
     }
 }
