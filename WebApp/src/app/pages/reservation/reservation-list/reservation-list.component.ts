@@ -17,7 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 
 export class ReservationListComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['customer', 'email', 'serviciu', 'status', 'data', 'ora', 'actions'];
+  displayedColumns: string[] = ['customer', 'email', 'beauty','beautyPrice', 'specialist', 'status', 'data', 'ora', 'actions'];
   hasRole: UserLogged = Object.create(null);
   reservations = new MatTableDataSource<Reservation>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -54,7 +54,7 @@ export class ReservationListComponent implements OnInit, AfterViewInit {
   openUpdateComponent(reservation: Reservation) {
     this.matDialog.open(ReservationDetailsComponent, {
       data: reservation,
-      height: '460px',
+      height: '580px',
       width: '300px',
     });
   }

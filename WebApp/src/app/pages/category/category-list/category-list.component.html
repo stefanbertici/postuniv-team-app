@@ -1,7 +1,8 @@
 <div class="table-container">
   <div class="category-table">
     <h3>[ c a t e g o r i e s ]</h3>
-    <table mat-table [dataSource]="categories" class="mat-elevation-z8">
+    <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="categories" class="tabus">
       <!-- Category_nrCrt -->
       <ng-container matColumnDef="nr">
         <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -25,5 +26,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+    </div>
   </div>
 </div>

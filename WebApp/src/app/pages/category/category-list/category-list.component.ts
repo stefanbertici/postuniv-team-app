@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Category } from 'src/app/model/category';
 import { CategoryService } from 'src/app/service/category.service';
 import { CategoryDetailsComponent } from '../category-details/category-details.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-category-list',
@@ -10,8 +12,9 @@ import { CategoryDetailsComponent } from '../category-details/category-details.c
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-  categories: Category[] = [];
+  categories = new MatTableDataSource<Category>;
   displayedColumns: string[] = ['nr', 'name', 'actions'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private categoryService: CategoryService, private matDialog: MatDialog) { }
 
@@ -21,7 +24,10 @@ export class CategoryListComponent implements OnInit {
 
   readAll() {
     this.categoryService.getAll()
-      .subscribe(x => this.categories = x);
+      .subscribe(x => this.categories.data = x);
+  }
+  ngAfterViewInit(): void {
+    this.categories.paginator = this.paginator;
   }
 
   delete(categoryId: number) {

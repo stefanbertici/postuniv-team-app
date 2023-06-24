@@ -14,6 +14,16 @@
         <br>
         <mat-form-field>
             <mat-label>Serviciu</mat-label>
+            <input disabled="disabled" matInput #email value="{{selectedReservation.beautyServiceName}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Pret</mat-label>
+            <input disabled="disabled" matInput #email value="{{selectedReservation.beautyServicePrice}}">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Specialist</mat-label>
             <input disabled="disabled" matInput #employee value="{{selectedReservation.employeeName}}">
         </mat-form-field>
         <br>

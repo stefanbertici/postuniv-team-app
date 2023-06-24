@@ -25,7 +25,15 @@ export class ReservationDetailsComponent {
     status: string, data: string, hour: string) {
     let formattedDate: string = new Date(data).toLocaleDateString('fr-CA').toString(); //YYYY-MM-DD
 
-    let reservationUpdated: Reservation = { id, clientName, clientEmail, employeeName, employeeId: this.selectedReservation.employeeId, status, date: formattedDate, hour };
+    let reservationUpdated: Reservation = { 
+      id, clientName, 
+      clientEmail, 
+      employeeName, 
+      employeeId: this.selectedReservation.employeeId, 
+      beautyServiceName: this.selectedReservation.beautyServiceName,
+      beautyServicePrice: this.selectedReservation.beautyServicePrice,
+      status, date: formattedDate, 
+      hour };
 
     this.reservationService.update(reservationUpdated)
       .subscribe(_ => {
