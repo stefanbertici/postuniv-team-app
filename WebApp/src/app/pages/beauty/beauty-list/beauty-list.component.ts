@@ -12,7 +12,7 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./beauty-list.component.scss']
 })
 export class BeautyListComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['name','category', 'duration', 'price', 'actions'];
+  displayedColumns: string[] = ['name', 'category', 'duration', 'price', 'actions'];
   beautyServices = new MatTableDataSource<Beauty>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -34,8 +34,10 @@ export class BeautyListComponent implements OnInit, AfterViewInit {
   delete(beautyService: Beauty) {
     if (confirm("You are about to delete... Are you sure?")) {
       this.beautyService.delete(beautyService.id!)
-        .subscribe(_ => console.log("Item deleted!"));
-      location.reload();
+        .subscribe(_ => {
+          console.log("Service deleted!")
+          location.reload();
+        });
     }
   }
 

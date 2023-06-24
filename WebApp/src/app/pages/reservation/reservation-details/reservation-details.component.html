@@ -29,9 +29,18 @@
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <!-- <mat-form-field>
             <mat-label>Ora</mat-label>
             <input matInput #ora value="{{selectedReservation.hour}}">
+        </mat-form-field> -->
+
+                <mat-form-field (mouseover)="fetchAvailableSpots(data.value)">
+            <mat-label>Ora</mat-label>
+            <mat-select #ora>
+                <mat-option *ngFor="let spot of availableSpots" [value]="spot">
+                    {{spot}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </form>
 </div>

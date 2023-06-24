@@ -11,7 +11,7 @@ import { CategoryService } from 'src/app/service/category.service';
   templateUrl: './beauty-add.component.html',
   styleUrls: ['./beauty-add.component.scss']
 })
-export class BeautyAddComponent implements OnInit{
+export class BeautyAddComponent implements OnInit {
   availableCategories: Category[] = [];
   timeUnits: TimeUnit[] = [
     { id: 1, displayValue: '30m', equivalentValue: 1 },
@@ -24,20 +24,23 @@ export class BeautyAddComponent implements OnInit{
     { id: 8, displayValue: '4h', equivalentValue: 8 },
   ];
 
-  constructor(private beautyService: BeautyService, 
+  constructor(private beautyService: BeautyService,
     private matDialogRef: MatDialogRef<BeautyAddComponent>,
     private categoryService: CategoryService) { }
 
-ngOnInit(): void {
-  this.fetchAvailableServices();
-}
+  ngOnInit(): void {
+    this.fetchAvailableServices();
+  }
 
   saveBeautyService(name: string, numOfAvailabilityBlocks: number, price: number, categoryName: string,) {
     let beautyServiceToBeSaved = { name, numOfAvailabilityBlocks, price, categoryName };
 
     this.beautyService.save(beautyServiceToBeSaved)
-      .subscribe(_ => console.log("Item saved!"))
-    location.reload();
+      .subscribe(_ => {
+        console.log("Item saved!");
+        location.reload();
+      });
+
   }
 
   fetchAvailableServices() {
@@ -45,7 +48,7 @@ ngOnInit(): void {
       .subscribe(x => this.availableCategories = x);
   }
 
-  closeModalComponent(){
+  closeModalComponent() {
     this.matDialogRef.close();
   }
 }

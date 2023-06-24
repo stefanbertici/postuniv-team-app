@@ -3,6 +3,7 @@ export interface Reservation{
     clientName: string,
     clientEmail: string,
     employeeName: string, 
+    employeeId: number,
     status: string,
     date: string,
     hour: string

@@ -19,8 +19,10 @@ export class CategoryDetailsComponent {
     let categoryForUpdate: Category = { id: this.selectedCategory.id, name };
 
     this.categoryService.update(categoryForUpdate)
-      .subscribe(_ => console.log("Category item updated!"));
-    location.reload();
+    .subscribe(_ => {
+      console.log("Category updated!")
+      location.reload();
+    });
   }
 
   closeModalComponent() {

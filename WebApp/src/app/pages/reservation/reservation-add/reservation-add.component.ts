@@ -40,8 +40,10 @@ export class ReservationAddComponent implements OnInit {
     };
 
     this.reservationService.save(reservationToBeSaved)
-      .subscribe(_ => console.log("Reservation saved!"));
-    location.reload();
+    .subscribe(_ => {
+      console.log("Reservation saved!");
+      location.reload();
+    });
   }
 
   saveReservationCustomerById(beautyServiceId: number, customerId: number, employeeId: number, date: string, hour: string) {
@@ -52,9 +54,10 @@ export class ReservationAddComponent implements OnInit {
     };
 
     this.reservationService.save(reservationToBeSaved)
-      .subscribe(_ => console.log("Reservation saved!"));
-    console.log(reservationToBeSaved);
-    location.reload();
+    .subscribe(_ => {
+      console.log("Reservation saved!");
+      location.reload();
+    });
   }
 
   fetchAvailableServices() {

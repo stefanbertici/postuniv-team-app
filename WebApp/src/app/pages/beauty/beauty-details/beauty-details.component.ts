@@ -41,8 +41,10 @@ export class BeautyDetailsComponent implements OnInit{
     let beautyServiceToBeUpdated = { id: this.beautyServiceSelected.id, name, numOfAvailabilityBlocks, price, categoryName };
 
     this.beautyService.update(beautyServiceToBeUpdated)
-      .subscribe(_x => console.log("Item updated"));
+    .subscribe(_ => {
+      console.log("Service updated!")
       location.reload();
+    });
   }
   
   closeModalComponent(){

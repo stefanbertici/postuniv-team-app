@@ -12,14 +12,17 @@ export class CategoryAddComponent {
   constructor(private categoryService: CategoryService, private matDialogRef: MatDialogRef<CategoryAddComponent>) { }
 
   saveCategory(categoryName: string) {
-    let category: Category = {name: categoryName};
+    let category: Category = { name: categoryName };
 
     this.categoryService.save(category)
-      .subscribe(_ => console.log("Category saved!"));
-      location.reload();
+      .subscribe(_ => {
+        console.log("Category saved!")
+        location.reload();
+      });
+
   }
 
-  closeModalComponent(){
+  closeModalComponent() {
     this.matDialogRef.close();
   }
 }
